@@ -89,7 +89,6 @@
       firefox
       flatpak
       tree
-      gnome-software
       grim
       slurp
       wl-clipboard
@@ -109,6 +108,7 @@
       adwaita-icon-theme
       tldr
       chezmoi
+      gh
     ];
   };
 
