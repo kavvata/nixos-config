@@ -11,6 +11,8 @@
       ../common/optional/greetd.nix
     ];
 
+  nixpkgs.config.allowUnfree = true;
+  
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
@@ -65,6 +67,9 @@
   services.libinput.enable = true;
 
   services.flatpak.enable = true;
+
+  services.tlp.enable = true;
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -109,6 +114,7 @@
       tldr
       chezmoi
       gh
+      jetbrains.pycharm-professional
     ];
   };
 
@@ -121,6 +127,7 @@
     git
     gcc
     swayfx
+    fzf
   ];
 
   programs.sway = {
