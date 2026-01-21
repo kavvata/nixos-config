@@ -114,7 +114,7 @@
       tldr
       chezmoi
       gh
-      jetbrains.pycharm-professional
+      zoxide
     ];
   };
 
