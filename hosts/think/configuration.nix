@@ -42,6 +42,7 @@
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
   };
+
   services = {
 
     # services.blueman.enable = true;
@@ -84,6 +85,7 @@
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
       #media-session.enable = true;
+
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -94,7 +96,17 @@
       openDefaultPorts =
         true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
     };
+
+    logind.settings.Login.LidSwitch = "suspend-then-hibernate";
+
   };
+
+  # systemd
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
+
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kav = {

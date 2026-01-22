@@ -6,13 +6,16 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
-
     initrd.availableKernelModules =
       [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ ];
+    kernelParams = [ "mem_sleep_default=deep" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
+    resumeDevice = "/dev/disk/by-uuid/95761a28-f8ea-45bc-861e-0d4b4ec4938e";
   };
+
+  powerManagement.enable = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/0c656c5f-d11a-451e-a4ea-4d80fdcb7148";
