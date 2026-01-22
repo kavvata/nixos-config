@@ -53,7 +53,13 @@
     flatpak.enable = true;
 
     # Enable the KDE Plasma Desktop Environment.
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      settings.Theme = {
+        CursorTheme = "Adwaita";
+        Font = "Geist Light";
+      };
+    };
     desktopManager.plasma6.enable = true;
 
     # Configure keymap in X11
@@ -116,7 +122,6 @@
       fzf
       ripgrep
       fd
-      adwaita-icon-theme
       tldr
       chezmoi
       gh
@@ -155,11 +160,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    kdePackages.sddm-kcm
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     tmux
     wget
     gcc
     git
+    adwaita-icon-theme
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
