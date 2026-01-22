@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -85,6 +85,30 @@
       enable = true;
       openDefaultPorts =
         true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+      user = "kav";
+      configDir = "/home/kav/.config/syncthing";
+      settings = {
+        devices = {
+          "iPhone" = {
+            id =
+              "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
+          };
+        };
+        folders = {
+          MDBase = {
+            id = "wgfwx-uf9em";
+            path = "/home/kav/Documents/Notes/MDBase/";
+            devices = [ "iPhone" ];
+            ignorePatterns = [ ".obsidian/appearance.json" ];
+          };
+          Ledger = {
+            id = "ubpxwp-upnxl";
+            path = "/home/kav/Documents/Finances/Ledger/";
+            devices = [ "iPhone" ];
+            ignorePatterns = [ ".venv" ];
+          };
+        };
+      };
     };
 
     logind.settings.Login.LidSwitch = "suspend-then-hibernate";
@@ -146,14 +170,17 @@
 
   fonts.packages = with pkgs; [ geist-font nerd-fonts.jetbrains-mono ];
   programs = {
-    firefox.enable = true;
+    # firefox.enable = true;
+
     fish = {
       enable = true;
       shellAliases = {
         ls = "eza --icons auto";
         l = "ls";
+        ll = "ls -lah";
       };
     };
+
     nix-ld.enable = true;
   };
 
@@ -183,25 +210,26 @@
     # Enable networking
     networkmanager.enable = true;
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-
-    # List services that you want to enable:
-
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
   };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
