@@ -137,6 +137,7 @@
       cargo
       vicinae
       hledger
+      bat
     ];
     shell = pkgs.fish;
   };
