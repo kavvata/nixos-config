@@ -155,6 +155,7 @@
       vicinae
       hledger
       bat
+      helium
     ];
     shell = pkgs.fish;
   };

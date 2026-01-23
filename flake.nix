@@ -12,7 +12,12 @@
       };
       think = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-        modules = [ ./hosts/think/configuration.nix ];
+        modules = [
+          ({ _, ... }: {
+            nixpkgs.overlays = [ (import ./overlays/helium.nix) ];
+          })
+          ./hosts/think/configuration.nix
+        ];
       };
 
     };
