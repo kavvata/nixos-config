@@ -155,6 +155,7 @@
       hledger
       bat
       flatpak
+      libqalculate
 
       # runtimes
       statix
