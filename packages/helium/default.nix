@@ -6,12 +6,12 @@
 let helium-widevine = callPackage ./widevine-x86_64-linux.nix { };
 in stdenv.mkDerivation rec {
   pname = "helium";
-  version = "0.7.10.1";
+  version = "0.8.3.1";
 
   src = fetchurl {
     url =
       "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64_linux.tar.xz";
-    hash = "sha256-A+/30GMtAQ8B5x1dH/mxbJP1hSp6widrR1HFenhqb3g=";
+    hash = "sha256-WVeqX8FeOFnfzZDPWqdSAK8qb/CMKAKVAhglcfX/sCY=";
   };
 
   sourceRoot = ".";
@@ -76,7 +76,7 @@ in stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin $out/opt/helium
     cp -r helium-${version}-x86_64_linux/* $out/opt/helium/
-    chmod +x $out/opt/helium/{chrome,chrome-wrapper}
+    chmod +x $out/opt/helium/{helium,helium-wrapper}
 
     cp -r ${helium-widevine}/share/helium/WidevineCdm $out/opt/helium/
 
@@ -90,7 +90,7 @@ in stdenv.mkDerivation rec {
       --replace-warn 'Exec=chromium' 'Exec=helium' \
       --replace-fail 'StartupWMClass=helium' 'StartupWMClass=Helium'
 
-    makeWrapper $out/opt/helium/chrome-wrapper $out/bin/helium \
+    makeWrapper $out/opt/helium/helium-wrapper $out/bin/helium \
       --chdir "$out/opt/helium" \
       --add-flags "--ozone-platform-hint=auto" \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath runtimeDependencies}"
