@@ -36,5 +36,13 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   hardware.bluetooth.enable = true;
+
+  # sleep and hibernate
+  services.logind.settings.Login.LidSwitch = "suspend-then-hibernate";
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
 }

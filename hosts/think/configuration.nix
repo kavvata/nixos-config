@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -110,23 +110,14 @@
         };
       };
     };
-
-    logind.settings.Login.LidSwitch = "suspend-then-hibernate";
-
   };
-
-  # systemd
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
 
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kav = {
     isNormalUser = true;
     description = "kav";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
       tree-sitter
@@ -167,6 +158,8 @@
     ];
     shell = pkgs.fish;
   };
+
+  virtualisation.docker = { enable = true; };
 
   fonts.packages = with pkgs; [ geist-font nerd-fonts.jetbrains-mono ];
   programs = {
