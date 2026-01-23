@@ -133,7 +133,7 @@
       legcord
       zathura
 
-      # ── CLI tools, runtimes, and developer utilities ───────────
+      # CLI, Dev tools
       fastfetch
       wl-clipboard
       eza
@@ -168,7 +168,12 @@
 
   virtualisation.docker = { enable = true; };
 
-  fonts.packages = with pkgs; [ geist-font nerd-fonts.jetbrains-mono ];
+  fonts.packages = with pkgs; [
+    geist-font
+    ibm-plex
+    nerd-fonts.jetbrains-mono
+    hachimarupop
+  ];
   programs = {
     # firefox.enable = true;
 
