@@ -119,21 +119,24 @@
     description = "kav";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
+      # GUI
       kdePackages.kate
-      tree-sitter
-      fastfetch
       firefox
-      flatpak
-      tree
-      wl-clipboard
+      thunderbird
       kitty
-      eza
       fuzzel
       waybar
       btop
-      python315
-      pipenv
-      nodejs_24
+      yazi
+      vicinae
+      helium
+      legcord
+      zathura
+
+      # ── CLI tools, runtimes, and developer utilities ───────────
+      fastfetch
+      wl-clipboard
+      eza
       bun
       uv
       fzf
@@ -145,17 +148,20 @@
       zoxide
       lazygit
       lazydocker
-      thunderbird
-      yazi
-      statix
       zip
       unzip
       ffmpeg-full
       cargo
-      vicinae
       hledger
       bat
-      helium
+      flatpak
+
+      # runtimes
+      statix
+      tree-sitter
+      python315
+      pipenv
+      nodejs_24
     ];
     shell = pkgs.fish;
   };
