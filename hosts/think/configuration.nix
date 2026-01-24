@@ -156,6 +156,8 @@
       bat
       flatpak
       libqalculate
+      sqlite
+      gnumake42
 
       # runtimes
       statix
