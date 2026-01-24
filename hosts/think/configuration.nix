@@ -158,6 +158,7 @@
       libqalculate
       sqlite
       gnumake42
+      nix-search-cli
 
       # runtimes
       statix
