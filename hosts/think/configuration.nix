@@ -289,6 +289,7 @@
     gcc
     git
     adwaita-icon-theme
+    intel-media-driver
   ];
   networking = {
 
