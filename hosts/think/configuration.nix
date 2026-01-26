@@ -159,6 +159,7 @@
       sqlite
       gnumake42
       nix-search-cli
+      trash-cli
 
       # runtimes
       statix
