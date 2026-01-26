@@ -153,6 +153,7 @@
       ffmpeg-full
       cargo
       hledger
+      hledger-ui
       bat
       flatpak
       libqalculate
