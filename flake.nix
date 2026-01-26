@@ -8,7 +8,12 @@
 
       bookling = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-        modules = [ ./hosts/bookling/configuration.nix ];
+        modules = [
+          ({ _, ... }: {
+            nixpkgs.overlays = [ (import ./overlays/helium.nix) ];
+          })
+	./hosts/bookling/configuration.nix 
+	];
       };
       think = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
