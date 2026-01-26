@@ -93,18 +93,22 @@
             id =
               "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
           };
+          "think" = {
+            id =
+              "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
+          };
         };
         folders = {
           MDBase = {
             id = "wgfwx-uf9em";
             path = "/home/kav/Documents/Notes/MDBase/";
-            devices = [ "iPhone" ];
+            devices = [ "iPhone" "think" ];
             ignorePatterns = [ ".obsidian/appearance.json" ];
           };
           Ledger = {
             id = "ubpxwp-upnxl";
             path = "/home/kav/Documents/Finances/Ledger/";
-            devices = [ "iPhone" ];
+            devices = [ "iPhone" "think" ];
             ignorePatterns = [ ".venv" ];
           };
         };
