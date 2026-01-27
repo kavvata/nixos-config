@@ -13,7 +13,7 @@
     kernelParams = [ "mem_sleep_default=deep" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
-    resumeDevice = "/dev/disk/by-uuid/6bb9f230-a07c-40fc-b667-2188f7f6dc8e";
+    resumeDevice = "/dev/disk/by-uuid/c13e9d86-8a11-4138-a5d4-f97e28927cc3";
   };
   fileSystems = {
     "/" = {
@@ -34,7 +34,7 @@
   };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/6bb9f230-a07c-40fc-b667-2188f7f6dc8e"; }];
+    [{ device = "/dev/disk/by-uuid/c13e9d86-8a11-4138-a5d4-f97e28927cc3"; }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode =
