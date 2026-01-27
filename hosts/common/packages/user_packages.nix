@@ -43,7 +43,7 @@ with pkgs; {
     gnumake42
     nix-search-cli
     trash-cli
-
+    dust
   ];
 
   runtimes = [ statix tree-sitter python315 pipenv nodejs_24 ];
