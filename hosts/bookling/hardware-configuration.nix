@@ -10,7 +10,6 @@
     initrd.availableKernelModules =
       [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
     initrd.kernelModules = [ ];
-    kernelParams = [ "mem_sleep_default=deep" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     resumeDevice = "/dev/disk/by-uuid/c13e9d86-8a11-4138-a5d4-f97e28927cc3";
