@@ -4,7 +4,8 @@
 
 { pkgs, ... }:
 
-{
+let userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -122,57 +123,7 @@
     isNormalUser = true;
     description = "kav";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      # GUI
-      kdePackages.kate
-      firefox
-      thunderbird
-      kitty
-      fuzzel
-      waybar
-      btop
-      yazi
-      vicinae
-      helium
-      legcord
-      zathura
-
-      # CLI, Dev tools
-      fastfetch
-      wl-clipboard
-      eza
-      bun
-      uv
-      fzf
-      ripgrep
-      fd
-      tldr
-      chezmoi
-      gh
-      zoxide
-      lazygit
-      lazydocker
-      zip
-      unzip
-      ffmpeg-full
-      cargo
-      hledger
-      hledger-ui
-      bat
-      flatpak
-      libqalculate
-      sqlite
-      gnumake42
-      nix-search-cli
-      trash-cli
-
-      # runtimes
-      statix
-      tree-sitter
-      python315
-      pipenv
-      nodejs_24
-    ];
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
     shell = pkgs.fish;
   };
 
