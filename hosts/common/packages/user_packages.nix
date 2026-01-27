@@ -12,6 +12,7 @@ with pkgs; {
     helium
     legcord
     zathura
+    mpv
   ];
 
   cli = [
