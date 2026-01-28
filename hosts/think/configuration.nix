@@ -4,7 +4,12 @@
 
 { pkgs, ... }:
 
-let userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+let
+  userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+  networkingConfig = import ../common/optional/networking.nix {
+    inherit pkgs;
+    hostName = "think";
+  };
 in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -248,22 +253,8 @@ in {
     adwaita-icon-theme
     intel-media-driver
   ];
-  networking = {
 
-    hostName = "think"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
-    networkmanager = {
-      enable = true;
-      plugins = with pkgs; [ networkmanager-openvpn ];
-    };
-
-  };
+  networking = networkingConfig;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
