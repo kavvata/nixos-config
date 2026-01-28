@@ -2,7 +2,6 @@
 
 with pkgs; {
   gui = [
-    kdePackages.kate
     thunderbird
     kitty
     fuzzel
