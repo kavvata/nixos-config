@@ -13,6 +13,7 @@ with pkgs; {
     legcord
     zathura
     mpv
+    jetbrains.datagrip
   ];
 
   cli = [
