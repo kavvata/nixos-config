@@ -134,12 +134,8 @@ in {
 
   virtualisation.docker = { enable = true; };
 
-  fonts.packages = with pkgs; [
-    geist-font
-    ibm-plex
-    nerd-fonts.jetbrains-mono
-    hachimarupop
-  ];
+  fonts.packages = userPkgs.fonts;
+
   programs = {
     # firefox.enable = true;
 

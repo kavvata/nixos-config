@@ -48,4 +48,6 @@ with pkgs; {
   ];
 
   runtimes = [ statix tree-sitter python315 pipenv nodejs_24 ];
+
+  fonts = [ geist-font ibm-plex nerd-fonts.jetbrains-mono corefonts ];
 }
