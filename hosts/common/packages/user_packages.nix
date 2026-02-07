@@ -45,6 +45,7 @@ with pkgs; {
     nix-search-cli
     trash-cli
     dust
+    httpie
   ];
 
   runtimes = [ statix tree-sitter python315 pipenv nodejs_24 ];
