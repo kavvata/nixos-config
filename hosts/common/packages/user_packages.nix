@@ -1,6 +1,7 @@
 { pkgs }:
 
-with pkgs; {
+with pkgs;
+{
   gui = [
     thunderbird
     kitty
@@ -48,7 +49,18 @@ with pkgs; {
     httpie
   ];
 
-  runtimes = [ statix tree-sitter python315 pipenv nodejs_24 ];
+  runtimes = [
+    statix
+    tree-sitter
+    python315
+    pipenv
+    nodejs_24
+  ];
 
-  fonts = [ geist-font ibm-plex nerd-fonts.jetbrains-mono corefonts ];
+  fonts = [
+    geist-font
+    ibm-plex
+    nerd-fonts.jetbrains-mono
+    corefonts
+  ];
 }

@@ -10,12 +10,17 @@ let
     inherit pkgs;
     hostName = "bookling";
   };
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -89,32 +94,35 @@ in {
 
     syncthing = {
       enable = true;
-      openDefaultPorts =
-        true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
       user = "kav";
       configDir = "/home/kav/.config/syncthing";
       settings = {
         devices = {
           "iPhone" = {
-            id =
-              "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
+            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
           };
           "think" = {
-            id =
-              "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
+            id = "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
           };
         };
         folders = {
           MDBase = {
             id = "wgfwx-uf9em";
             path = "/home/kav/Documents/Notes/MDBase/";
-            devices = [ "iPhone" "think" ];
+            devices = [
+              "iPhone"
+              "think"
+            ];
             ignorePatterns = [ ".obsidian/appearance.json" ];
           };
           Ledger = {
             id = "ubpxwp-upnxl";
             path = "/home/kav/Documents/Finances/Ledger/";
-            devices = [ "iPhone" "think" ];
+            devices = [
+              "iPhone"
+              "think"
+            ];
             ignorePatterns = [ ".venv" ];
           };
         };
@@ -127,12 +135,18 @@ in {
   users.users.kav = {
     isNormalUser = true;
     description = "kav";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
     shell = pkgs.fish;
   };
 
-  virtualisation.docker = { enable = true; };
+  virtualisation.docker = {
+    enable = true;
+  };
 
   fonts.packages = userPkgs.fonts;
 
@@ -280,4 +294,3 @@ in {
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-

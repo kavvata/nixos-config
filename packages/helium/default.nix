@@ -1,23 +1,57 @@
-{ lib, stdenv, fetchurl, makeWrapper, autoPatchelfHook, copyDesktopItems
-, callPackage, alsa-lib, at-spi2-atk, at-spi2-core, cairo, cups, dbus, gtk3
-, glib, gsettings-desktop-schemas, libdrm, libgbm, libxkbcommon, mesa, nspr, nss
-, pango, systemd, wayland, xorg, libGL, vulkan-loader, libva, libvdpau
-, gcc-unwrapped, patchelfUnstable, }:
-let helium-widevine = callPackage ./widevine-x86_64-linux.nix { };
-in stdenv.mkDerivation rec {
+{
+  lib,
+  stdenv,
+  fetchurl,
+  makeWrapper,
+  autoPatchelfHook,
+  copyDesktopItems,
+  callPackage,
+  alsa-lib,
+  at-spi2-atk,
+  at-spi2-core,
+  cairo,
+  cups,
+  dbus,
+  gtk3,
+  glib,
+  gsettings-desktop-schemas,
+  libdrm,
+  libgbm,
+  libxkbcommon,
+  mesa,
+  nspr,
+  nss,
+  pango,
+  systemd,
+  wayland,
+  xorg,
+  libGL,
+  vulkan-loader,
+  libva,
+  libvdpau,
+  gcc-unwrapped,
+  patchelfUnstable,
+}:
+let
+  helium-widevine = callPackage ./widevine-x86_64-linux.nix { };
+in
+stdenv.mkDerivation rec {
   pname = "helium";
   version = "0.8.4.1";
 
   src = fetchurl {
-    url =
-      "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64_linux.tar.xz";
+    url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64_linux.tar.xz";
     hash = "sha256-M/1wGewl500vJsoYfhbgXHQ4vlI6d0PRGGGGsRol6sc=";
   };
 
   sourceRoot = ".";
 
-  nativeBuildInputs =
-    [ autoPatchelfHook patchelfUnstable makeWrapper copyDesktopItems ];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    patchelfUnstable
+    makeWrapper
+    copyDesktopItems
+  ];
 
   buildInputs = [
     alsa-lib
@@ -52,8 +86,13 @@ in stdenv.mkDerivation rec {
     gcc-unwrapped.lib
   ];
 
-  runtimeDependencies =
-    map lib.getLib [ libGL mesa vulkan-loader libva libvdpau ];
+  runtimeDependencies = map lib.getLib [
+    libGL
+    mesa
+    vulkan-loader
+    libva
+    libvdpau
+  ];
 
   appendRunpaths = [
     "${libGL}/lib"

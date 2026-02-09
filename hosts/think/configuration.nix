@@ -10,12 +10,17 @@ let
     inherit pkgs;
     hostName = "think";
   };
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -89,32 +94,35 @@ in {
 
     syncthing = {
       enable = true;
-      openDefaultPorts =
-        true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
       user = "kav";
       configDir = "/home/kav/.config/syncthing";
       settings = {
         devices = {
           "iPhone" = {
-            id =
-              "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
+            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
           };
           "bookling" = {
-            id =
-              "TXX6RBS-67UIR5Y-PLMROC4-XJ2AZGY-7XNFGTT-ISHY2SM-2TR6TAN-2EY6YAY";
+            id = "TXX6RBS-67UIR5Y-PLMROC4-XJ2AZGY-7XNFGTT-ISHY2SM-2TR6TAN-2EY6YAY";
           };
         };
         folders = {
           MDBase = {
             id = "wgfwx-uf9em";
             path = "/home/kav/Documents/Notes/MDBase/";
-            devices = [ "iPhone" "bookling" ];
+            devices = [
+              "iPhone"
+              "bookling"
+            ];
             ignorePatterns = [ ".obsidian/appearance.json" ];
           };
           Ledger = {
             id = "ubpxwp-upnxl";
             path = "/home/kav/Documents/Finances/Ledger/";
-            devices = [ "iPhone" "bookling" ];
+            devices = [
+              "iPhone"
+              "bookling"
+            ];
             ignorePatterns = [ ".venv" ];
           };
         };
@@ -127,12 +135,18 @@ in {
   users.users.kav = {
     isNormalUser = true;
     description = "kav";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
     shell = pkgs.fish;
   };
 
-  virtualisation.docker = { enable = true; };
+  virtualisation.docker = {
+    enable = true;
+  };
 
   fonts.packages = userPkgs.fonts;
   programs = {

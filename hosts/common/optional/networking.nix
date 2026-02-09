@@ -1,4 +1,5 @@
-{ pkgs, hostName }: {
+{ pkgs, hostName }:
+{
 
   inherit hostName; # Define your hostname.
   # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
