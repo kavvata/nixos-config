@@ -5,18 +5,20 @@ with pkgs;
   gui = [
     thunderbird
     kitty
-    fuzzel
-    waybar
-    yazi
     vicinae
     helium
     legcord
     zathura
     mpv
+  ];
+
+  ides = [
+    zed-editor
     jetbrains.datagrip
   ];
 
   cli = [
+    yazi
     btop
     killall
     fastfetch
@@ -64,5 +66,9 @@ with pkgs;
     ibm-plex
     nerd-fonts.jetbrains-mono
     corefonts
+  ];
+  wmUtils = [
+    fuzzel
+    waybar
   ];
 }

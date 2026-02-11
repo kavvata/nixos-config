@@ -140,7 +140,7 @@ in
       "wheel"
       "docker"
     ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides;
     shell = pkgs.fish;
   };
 
