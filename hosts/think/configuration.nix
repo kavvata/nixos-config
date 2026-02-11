@@ -140,7 +140,16 @@ in
       "wheel"
       "docker"
     ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
+    packages =
+      userPkgs.gui
+      ++ userPkgs.cli
+      ++ userPkgs.runtimes
+      ++ (with pkgs; [
+        mako
+        waybar
+        wofi
+        bluetuith
+      ]);
     shell = pkgs.fish;
   };
 
@@ -151,6 +160,8 @@ in
   fonts.packages = userPkgs.fonts;
   programs = {
     # firefox.enable = true;
+
+    niri.enable = true;
 
     fish = {
       enable = true;
