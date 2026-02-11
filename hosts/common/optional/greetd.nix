@@ -1,17 +1,16 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 let
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
 in
 {
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${tuigreet} --time --remember --remember-session --cmd sway";
+        command = "${tuigreet} --time --remember --remember-session --cmd niri-session";
         user = "greeter";
       };
     };

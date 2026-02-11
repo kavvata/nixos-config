@@ -59,6 +59,7 @@ with pkgs;
   ];
 
   fonts = [
+    inter
     geist-font
     ibm-plex
     nerd-fonts.jetbrains-mono

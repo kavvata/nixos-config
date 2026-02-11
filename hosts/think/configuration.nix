@@ -15,6 +15,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common/optional/greetd.nix
   ];
 
   nix.settings.experimental-features = [
@@ -55,14 +56,16 @@ in
     flatpak.enable = true;
 
     # Enable the KDE Plasma Desktop Environment.
-    displayManager.sddm = {
-      enable = true;
-      settings.Theme = {
-        CursorTheme = "Adwaita";
-        Font = "Geist Light";
-      };
-    };
-    desktopManager.plasma6.enable = true;
+    # displayManager.sddm = {
+    #   enable = true;
+    #   settings.Theme = {
+    #     CursorTheme = "Adwaita";
+    #     Font = "Geist Light";
+    #   };
+    # };
+    # desktopManager.plasma6.enable = true;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
     xserver.xkb = {
@@ -149,6 +152,18 @@ in
         waybar
         wofi
         bluetuith
+        hyprpaper
+        hyprpicker
+        hyprlock
+        libnotify
+        pamixer
+        brightnessctl
+        polkit_gnome
+        gnome-software
+        nautilus
+        amberol
+        swayidle
+        udiskie
       ]);
     shell = pkgs.fish;
   };
@@ -264,7 +279,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kdePackages.sddm-kcm
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     tmux
     wget
