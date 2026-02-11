@@ -18,6 +18,7 @@ with pkgs;
 
   cli = [
     btop
+    killall
     fastfetch
     wl-clipboard
     eza
