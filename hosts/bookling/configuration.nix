@@ -14,6 +14,7 @@ in
 {
   imports = [
     # Include the results of the hardware scan.
+    ../common/optional/greetd.nix
     ./hardware-configuration.nix
   ];
 
@@ -53,16 +54,21 @@ in
     xserver.enable = false;
 
     flatpak.enable = true;
+    tlp.enable = true;
 
     # Enable the KDE Plasma Desktop Environment.
-    displayManager.sddm = {
-      enable = true;
-      settings.Theme = {
-        CursorTheme = "Adwaita";
-        Font = "Geist Light";
-      };
-    };
-    desktopManager.plasma6.enable = true;
+
+    # displayManager.sddm = {
+    #   enable = true;
+    #   settings.Theme = {
+    #     CursorTheme = "Adwaita";
+    #     Font = "Geist Light";
+    #   };
+    # };
+    # desktopManager.plasma6.enable = true;
+
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
     xserver.xkb = {
@@ -140,7 +146,7 @@ in
       "wheel"
       "docker"
     ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides;
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
     shell = pkgs.fish;
   };
 
@@ -152,6 +158,8 @@ in
 
   programs = {
     # firefox.enable = true;
+
+    niri.enable = true;
 
     fish = {
       enable = true;

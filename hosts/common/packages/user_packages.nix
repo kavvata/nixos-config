@@ -67,8 +67,24 @@ with pkgs;
     nerd-fonts.jetbrains-mono
     corefonts
   ];
-  wmUtils = [
+  niriPkgs = [
     fuzzel
+    mako
     waybar
+    wofi
+    bluetuith
+    hyprpaper
+    hyprpicker
+    hyprlock
+    libnotify
+    pamixer
+    brightnessctl
+    polkit_gnome
+    gnome-software
+    nautilus
+    amberol
+    swayidle
+    udiskie
+    xwayland-satellite
   ];
 }
