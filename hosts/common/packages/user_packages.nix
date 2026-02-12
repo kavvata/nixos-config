@@ -10,6 +10,8 @@ with pkgs;
     legcord
     zathura
     mpv
+    libreoffice-fresh
+    dconf-editor
   ];
 
   ides = [
