@@ -106,9 +106,10 @@ in
   fonts.packages = userPkgs.fonts;
 
   programs = {
-    # firefox.enable = true;
-
-    niri.enable = true;
+    niri = {
+      enable = true;
+      useNautilus = true;
+    };
 
     fish = {
       enable = true;
