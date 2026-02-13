@@ -113,6 +113,7 @@ in
 
     fish = {
       enable = true;
+      useBabelfish = true;
       shellAliases = {
         ls = "eza --icons auto";
         l = "ls";
