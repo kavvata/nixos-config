@@ -69,13 +69,14 @@ with pkgs;
     nerd-fonts.jetbrains-mono
     corefonts
   ];
+
   niriPkgs = [
     fuzzel
     mako
     waybar
     wofi
     bluetuith
-    hyprpaper
+    swaybg
     hyprpicker
     hyprlock
     libnotify
