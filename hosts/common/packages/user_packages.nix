@@ -73,6 +73,7 @@ with pkgs;
   niriPkgs = [
     fuzzel
     mako
+    noctalia-shell
     waybar
     wofi
     bluetuith
