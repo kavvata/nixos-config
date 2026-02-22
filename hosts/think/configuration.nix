@@ -10,6 +10,7 @@ let
     inherit pkgs;
     hostName = "think";
   };
+  commonServices = import ../common/packages/services.nix { };
 in
 {
   imports = [
@@ -45,94 +46,6 @@ in
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services = {
-
-    # services.blueman.enable = true;
-
-    # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
-    xserver.enable = false;
-
-    flatpak.enable = true;
-
-    # Enable the KDE Plasma Desktop Environment.
-    # displayManager.sddm = {
-    #   enable = true;
-    #   settings.Theme = {
-    #     CursorTheme = "Adwaita";
-    #     Font = "Geist Light";
-    #   };
-    # };
-    # desktopManager.plasma6.enable = true;
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
-
-    # Configure keymap in X11
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-
-    # Enable CUPS to print documents.
-    printing.enable = true;
-
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
-
-    };
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    # services.xserver.libinput.enable = true;
-
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-      user = "kav";
-      configDir = "/home/kav/.config/syncthing";
-      settings = {
-        devices = {
-          "iPhone" = {
-            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
-          };
-          "bookling" = {
-            id = "TXX6RBS-67UIR5Y-PLMROC4-XJ2AZGY-7XNFGTT-ISHY2SM-2TR6TAN-2EY6YAY";
-          };
-        };
-        folders = {
-          MDBase = {
-            id = "wgfwx-uf9em";
-            path = "/home/kav/Documents/Notes/MDBase/";
-            devices = [
-              "iPhone"
-              "bookling"
-            ];
-            ignorePatterns = [ ".obsidian/appearance.json" ];
-          };
-          Ledger = {
-            id = "ubpxwp-upnxl";
-            path = "/home/kav/Documents/Finances/Ledger/";
-            devices = [
-              "iPhone"
-              "bookling"
-            ];
-            ignorePatterns = [ ".venv" ];
-          };
-        };
-      };
-    };
-  };
-
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kav = {
@@ -143,28 +56,7 @@ in
       "wheel"
       "docker"
     ];
-    packages =
-      userPkgs.gui
-      ++ userPkgs.cli
-      ++ userPkgs.runtimes
-      ++ (with pkgs; [
-        mako
-        waybar
-        wofi
-        bluetuith
-        hyprpaper
-        hyprpicker
-        hyprlock
-        libnotify
-        pamixer
-        brightnessctl
-        polkit_gnome
-        gnome-software
-        nautilus
-        amberol
-        swayidle
-        udiskie
-      ]);
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.niriPkgs;
     shell = pkgs.fish;
   };
 
@@ -290,19 +182,44 @@ in
 
   networking = networkingConfig;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  services.tlp.enable = true;
+  services = commonServices.niriServices // {
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+      user = "kav";
+      configDir = "/home/kav/.config/syncthing";
+      settings = {
+        devices = {
+          "iPhone" = {
+            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
+          };
+          "bookling" = {
+            id = "TXX6RBS-67UIR5Y-PLMROC4-XJ2AZGY-7XNFGTT-ISHY2SM-2TR6TAN-2EY6YAY";
+          };
+        };
+        folders = {
+          MDBase = {
+            id = "wgfwx-uf9em";
+            path = "/home/kav/Documents/Notes/MDBase/";
+            devices = [
+              "iPhone"
+              "bookling"
+            ];
+            ignorePatterns = [ ".obsidian/appearance.json" ];
+          };
+          Ledger = {
+            id = "ubpxwp-upnxl";
+            path = "/home/kav/Documents/Finances/Ledger/";
+            devices = [
+              "iPhone"
+              "bookling"
+            ];
+            ignorePatterns = [ ".venv" ];
+          };
+        };
+      };
+    };
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
