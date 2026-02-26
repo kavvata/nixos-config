@@ -52,6 +52,7 @@ with pkgs;
     trash-cli
     dust
     httpie
+    jq
   ];
 
   runtimes = [
