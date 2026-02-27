@@ -1,7 +1,7 @@
 { pkgs }:
 
 with pkgs;
-{
+rec {
   gui = [
     thunderbird
     kitty
@@ -12,6 +12,9 @@ with pkgs;
     mpv
     libreoffice-fresh
     dconf-editor
+    amberol
+    gnome-software
+    nautilus
   ];
 
   ides = [
@@ -71,10 +74,9 @@ with pkgs;
     corefonts
   ];
 
-  niriPkgs = [
+  wmPkgs = [
     fuzzel
     mako
-    noctalia-shell
     waybar
     wofi
     bluetuith
@@ -85,11 +87,11 @@ with pkgs;
     pamixer
     brightnessctl
     polkit_gnome
-    gnome-software
-    nautilus
-    amberol
     swayidle
     udiskie
-    xwayland-satellite
   ];
+
+  niriPkgs = wmPkgs ++ [ xwayland-satellite ];
+
+  swayPkgs = wmPkgs ++ [ autotiling-rs ];
 }

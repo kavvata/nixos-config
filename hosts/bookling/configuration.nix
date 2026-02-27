@@ -95,7 +95,13 @@ in
       "wheel"
       "docker"
     ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
+    packages =
+      userPkgs.gui
+      ++ userPkgs.cli
+      ++ userPkgs.runtimes
+      ++ userPkgs.ides
+      ++ userPkgs.niriPkgs
+      ++ userPkgs.swayPkgs;
     shell = pkgs.fish;
   };
 
@@ -109,6 +115,11 @@ in
     niri = {
       enable = true;
       useNautilus = true;
+    };
+
+    sway = {
+      enable = true;
+      package = pkgs.swayfx;
     };
 
     fish = {
