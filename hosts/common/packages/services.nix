@@ -1,5 +1,5 @@
 { ... }:
-{
+rec {
   niriServices = {
     upower.enable = true;
     devmon.enable = true;
@@ -30,5 +30,10 @@
       pulse.enable = true;
 
     };
+  };
+
+  swayServices = niriServices // {
+    gnome.gnome-keyring.enable = true;
+
   };
 }
