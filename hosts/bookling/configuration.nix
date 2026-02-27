@@ -6,12 +6,12 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+  commonServices = import ../common/packages/services.nix { };
+  commonPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "bookling";
   };
-  commonServices = import ../common/packages/services.nix { };
-  commonPrograms = import ../common/packages/programs.nix { inherit pkgs; };
 in
 {
   imports = [
@@ -47,47 +47,45 @@ in
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services =
-    commonServices.niriServices
-    // commonServices.swayServices
-    // {
-      syncthing = {
-        enable = true;
-        openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-        user = "kav";
-        configDir = "/home/kav/.config/syncthing";
-        settings = {
-          devices = {
-            "iPhone" = {
-              id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
-            };
-            "think" = {
-              id = "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
-            };
+  services = {
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
+      user = "kav";
+      configDir = "/home/kav/.config/syncthing";
+      settings = {
+        devices = {
+          "iPhone" = {
+            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
           };
-          folders = {
-            MDBase = {
-              id = "wgfwx-uf9em";
-              path = "/home/kav/Documents/Notes/MDBase/";
-              devices = [
-                "iPhone"
-                "think"
-              ];
-              ignorePatterns = [ ".obsidian/appearance.json" ];
-            };
-            Ledger = {
-              id = "ubpxwp-upnxl";
-              path = "/home/kav/Documents/Finances/Ledger/";
-              devices = [
-                "iPhone"
-                "think"
-              ];
-              ignorePatterns = [ ".venv" ];
-            };
+          "think" = {
+            id = "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
+          };
+        };
+        folders = {
+          MDBase = {
+            id = "wgfwx-uf9em";
+            path = "/home/kav/Documents/Notes/MDBase/";
+            devices = [
+              "iPhone"
+              "think"
+            ];
+            ignorePatterns = [ ".obsidian/appearance.json" ];
+          };
+          Ledger = {
+            id = "ubpxwp-upnxl";
+            path = "/home/kav/Documents/Finances/Ledger/";
+            devices = [
+              "iPhone"
+              "think"
+            ];
+            ignorePatterns = [ ".venv" ];
           };
         };
       };
     };
+  }
+  // commonServices.niriServices;
 
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -99,13 +97,7 @@ in
       "wheel"
       "docker"
     ];
-    packages =
-      userPkgs.gui
-      ++ userPkgs.cli
-      ++ userPkgs.runtimes
-      ++ userPkgs.ides
-      ++ userPkgs.niriPkgs
-      ++ userPkgs.swayPkgs;
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
     shell = pkgs.fish;
   };
 
@@ -115,7 +107,7 @@ in
 
   fonts.packages = userPkgs.fonts;
 
-  programs = commonPrograms.niriPrograms // commonPrograms.swayPrograms;
+  programs = commonPrograms.niriPrograms;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
