@@ -5,7 +5,6 @@ rec {
   gui = [
     thunderbird
     kitty
-    vicinae
     helium
     legcord
     zathura
@@ -75,6 +74,7 @@ rec {
   ];
 
   wmPkgs = [
+    vicinae
     fuzzel
     mako
     waybar
