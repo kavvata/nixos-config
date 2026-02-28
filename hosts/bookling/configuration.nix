@@ -6,8 +6,6 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
-  commonServices = import ../common/packages/services.nix { };
-  commonPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "bookling";
@@ -17,6 +15,8 @@ in
   imports = [
     # Include the results of the hardware scan.
     ../common/optional/greetd.nix
+    ../common/windowManagers/niri.nix
+    ../common/windowManagers/sway.nix
     ./hardware-configuration.nix
   ];
 
@@ -84,8 +84,7 @@ in
         };
       };
     };
-  }
-  // commonServices.niriServices;
+  };
 
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -98,7 +97,7 @@ in
       "docker"
     ];
     shell = pkgs.fish;
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides;
   };
 
   virtualisation.docker = {
@@ -107,15 +106,12 @@ in
 
   fonts.packages = userPkgs.fonts;
 
-  programs = commonPrograms.niriPrograms;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kdePackages.sddm-kcm
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     tmux
     wget
