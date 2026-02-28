@@ -6,11 +6,12 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+  commonServices = import ../common/packages/services.nix { };
+  commonPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "think";
   };
-  commonServices = import ../common/packages/services.nix { };
 in
 {
   imports = [
@@ -56,7 +57,8 @@ in
       "wheel"
       "docker"
     ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.niriPkgs;
+    packages =
+      userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.swayPkgs ++ userPkgs.niriPkgs;
     shell = pkgs.fish;
   };
 
@@ -65,105 +67,7 @@ in
   };
 
   fonts.packages = userPkgs.fonts;
-  programs = {
-    # firefox.enable = true;
-
-    niri.enable = true;
-
-    fish = {
-      enable = true;
-      shellAliases = {
-        ls = "eza --icons auto";
-        l = "ls";
-        ll = "ls -lah";
-      };
-    };
-
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [
-      # Core runtime
-      glibc
-      stdenv.cc.cc
-      zlib
-      libgcc
-      bash
-
-      # Common system libs
-      dbus
-      expat
-      libuuid
-      libxcb
-      libxkbcommon
-      libdrm
-      mesa
-
-      # X11
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXinerama
-      xorg.libXrender
-      xorg.libXext
-      xorg.libXi
-      xorg.libXfixes
-      xorg.libXdamage
-      xorg.libXScrnSaver
-      xorg.libXcomposite
-      xorg.libXxf86vm
-
-      # Wayland
-      wayland
-      wayland-protocols
-
-      # Audio
-      alsa-lib
-      pipewire
-
-      # Fonts / text
-      freetype
-      fontconfig
-      harfbuzz
-      pango
-      cairo
-
-      # Graphics & images
-      libGL
-      libGLU
-      libpng
-      libjpeg
-      libwebp
-      giflib
-      gdk-pixbuf
-
-      # Compression / archives
-      bzip2
-      xz
-      zstd
-
-      # Networking & crypto
-      openssl
-      curl
-      libnghttp2
-      krb5
-
-      # GTK
-      glib
-      gtk3
-      gtk4
-      atk
-      at-spi2-core
-      at-spi2-atk
-
-      # Misc
-      nspr
-      nss
-      libnotify
-      libsecret
-      libcap
-      libpulseaudio
-      cups
-    ];
-  };
+  programs = commonPrograms.swayPrograms // commonPrograms.niriPrograms;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -182,7 +86,7 @@ in
 
   networking = networkingConfig;
 
-  services = commonServices.niriServices // {
+  services = {
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
@@ -219,7 +123,9 @@ in
         };
       };
     };
-  };
+  }
+  // commonServices.swayServices
+  // commonServices.niriServices;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
