@@ -1,13 +1,10 @@
 { ... }:
 rec {
-  niriServices = {
-    upower.enable = true;
+  defaultServices = {
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
 
-    # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
     xserver.enable = false;
 
     flatpak.enable = true;
@@ -31,9 +28,11 @@ rec {
 
     };
   };
+  niriServices = defaultServices // {
+    upower.enable = true;
+  };
 
-  swayServices = niriServices // {
+  swayServices = defaultServices // {
     gnome.gnome-keyring.enable = true;
-
   };
 }
