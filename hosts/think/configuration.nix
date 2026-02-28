@@ -8,6 +8,7 @@ let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
   commonServices = import ../common/packages/services.nix { };
   commonPrograms = import ../common/packages/programs.nix { inherit pkgs; };
+  userName = "kav";
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "think";
@@ -17,6 +18,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common/windowManagers/sway.nix
     ../common/optional/greetd.nix
   ];
 
@@ -49,16 +51,18 @@ in
 
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kav = {
+
+  local.userName = userName;
+
+  users.users.${userName} = {
     isNormalUser = true;
-    description = "kav";
+    description = userName;
     extraGroups = [
       "networkmanager"
       "wheel"
       "docker"
     ];
-    packages =
-      userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.swayPkgs ++ userPkgs.niriPkgs;
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
     shell = pkgs.fish;
   };
 
@@ -67,7 +71,6 @@ in
   };
 
   fonts.packages = userPkgs.fonts;
-  programs = commonPrograms.swayPrograms // commonPrograms.niriPrograms;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -123,9 +126,7 @@ in
         };
       };
     };
-  }
-  // commonServices.swayServices
-  // commonServices.niriServices;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
