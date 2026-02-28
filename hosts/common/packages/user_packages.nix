@@ -93,5 +93,9 @@ rec {
 
   niriPkgs = wmPkgs ++ [ xwayland-satellite ];
 
-  swayPkgs = wmPkgs ++ [ autotiling-rs ];
+  swayPkgs = wmPkgs ++ [
+    autotiling-rs
+    grim
+    slurp
+  ];
 }
