@@ -97,8 +97,8 @@ in
       "wheel"
       "docker"
     ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
     shell = pkgs.fish;
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
   };
 
   virtualisation.docker = {
