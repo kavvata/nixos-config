@@ -71,6 +71,9 @@ rec {
     ibm-plex
     nerd-fonts.jetbrains-mono
     corefonts
+    aegyptus
+    maya
+    symbola
   ];
 
   wmPkgs = [
