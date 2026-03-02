@@ -2,13 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
-  commonServices = import ../common/packages/services.nix { };
-  commonPrograms = import ../common/packages/programs.nix { inherit pkgs; };
-  userName = "kav";
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "think";
@@ -18,6 +15,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common/optional/users.nix
     ../common/windowManagers/sway.nix
     ../common/optional/greetd.nix
   ];
@@ -52,20 +50,9 @@ in
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
-  local.userName = userName;
-
-  users.users.${userName} = {
-    isNormalUser = true;
-    description = userName;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+  users.users.${config.local.userName} = {
     packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
-    shell = pkgs.fish;
   };
-
   virtualisation.docker = {
     enable = true;
   };
