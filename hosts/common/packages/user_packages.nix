@@ -55,6 +55,7 @@ rec {
     dust
     httpie
     jq
+    nvd
   ];
 
   runtimes = [
