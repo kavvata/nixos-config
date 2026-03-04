@@ -24,7 +24,17 @@
   pango,
   systemd,
   wayland,
-  xorg,
+  libX11,
+  libxcb,
+  libXcomposite,
+  libXcursor,
+  libXdamage,
+  libXext,
+  libXfixes,
+  libXi,
+  libXrandr,
+  libXrender,
+  libXtst,
   libGL,
   vulkan-loader,
   libva,
@@ -37,11 +47,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "helium";
-  version = "0.9.2.1";
+  version = "0.9.4.1";
 
   src = fetchurl {
     url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64_linux.tar.xz";
-    hash = "sha256-wDHs/FEoOkYUjKPUrM9QAPwsqNvURJhlP/RZteLL2gA=";
+    hash = "sha256-qXuDUtank46O87jASxczmVMk0iD4JaZi2j9LSBe9VCM=";
   };
 
   sourceRoot = ".";
@@ -72,17 +82,17 @@ stdenv.mkDerivation rec {
     pango
     systemd
     wayland
-    xorg.libX11
-    xorg.libxcb
-    xorg.libXcomposite
-    xorg.libXcursor
-    xorg.libXdamage
-    xorg.libXext
-    xorg.libXfixes
-    xorg.libXi
-    xorg.libXrandr
-    xorg.libXrender
-    xorg.libXtst
+    libX11
+    libxcb
+    libXcomposite
+    libXcursor
+    libXdamage
+    libXext
+    libXfixes
+    libXi
+    libXrandr
+    libXrender
+    libXtst
     gcc-unwrapped.lib
   ];
 
