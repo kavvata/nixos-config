@@ -17,7 +17,6 @@ rec {
   ];
 
   ides = [
-    zed-editor
     jetbrains.datagrip
   ];
 
