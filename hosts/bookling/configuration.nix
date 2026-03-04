@@ -90,7 +90,16 @@ in
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${config.local.userName} = {
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides;
+    packages =
+      userPkgs.gui
+      ++ userPkgs.cli
+      ++ userPkgs.runtimes
+      ++ userPkgs.ides
+      ++ (with pkgs; [
+        yt-dlp
+        python314Packages.yt-dlp-ejs
+        deno
+      ]);
   };
 
   virtualisation.docker = {
