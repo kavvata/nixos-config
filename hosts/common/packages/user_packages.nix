@@ -4,7 +4,7 @@ with pkgs;
 rec {
   gui = [
     thunderbird
-    kitty
+    foot
     helium
     legcord
     zathura
