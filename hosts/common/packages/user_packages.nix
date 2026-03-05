@@ -81,7 +81,6 @@ rec {
     vicinae
     fuzzel
     mako
-    noctalia-shell
     waybar
     wofi
     bluetuith
@@ -96,7 +95,10 @@ rec {
     udiskie
   ];
 
-  niriPkgs = wmPkgs ++ [ xwayland-satellite ];
+  niriPkgs = wmPkgs ++ [
+    xwayland-satellite
+    noctalia-shell
+  ];
 
   swayPkgs = wmPkgs ++ [
     autotiling-rs
