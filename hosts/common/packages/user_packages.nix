@@ -1,25 +1,27 @@
 { pkgs }:
 
 with pkgs;
-{
+rec {
   gui = [
     thunderbird
-    kitty
-    vicinae
+    foot
     helium
     legcord
     zathura
     mpv
     libreoffice-fresh
     dconf-editor
+    amberol
+    gnome-software
+    nautilus
   ];
 
   ides = [
-    zed-editor
     jetbrains.datagrip
   ];
 
   cli = [
+    file
     yazi
     btop
     killall
@@ -52,6 +54,8 @@ with pkgs;
     trash-cli
     dust
     httpie
+    jq
+    nvd
   ];
 
   runtimes = [
@@ -68,9 +72,13 @@ with pkgs;
     ibm-plex
     nerd-fonts.jetbrains-mono
     corefonts
+    aegyptus
+    maya
+    symbola
   ];
 
-  niriPkgs = [
+  wmPkgs = [
+    vicinae
     fuzzel
     mako
     noctalia-shell
@@ -84,11 +92,15 @@ with pkgs;
     pamixer
     brightnessctl
     polkit_gnome
-    gnome-software
-    nautilus
-    amberol
     swayidle
     udiskie
-    xwayland-satellite
+  ];
+
+  niriPkgs = wmPkgs ++ [ xwayland-satellite ];
+
+  swayPkgs = wmPkgs ++ [
+    autotiling-rs
+    grim
+    slurp
   ];
 }

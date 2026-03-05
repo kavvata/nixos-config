@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
@@ -15,6 +15,8 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common/optional/users.nix
+    ../common/windowManagers/sway.nix
     ../common/optional/greetd.nix
   ];
 
@@ -45,56 +47,36 @@ in
     LC_TIME = "pt_BR.UTF-8";
   };
 
+  security.rtkit.enable = true;
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  users.users.${config.local.userName} = {
+    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes;
+  };
+  virtualisation.docker = {
+    enable = true;
+  };
+
+  fonts.packages = userPkgs.fonts;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    tmux
+    wget
+    gcc
+    git
+    adwaita-icon-theme
+    intel-media-driver
+  ];
+
+  networking = networkingConfig;
+
   services = {
-
-    # services.blueman.enable = true;
-
-    # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
-    xserver.enable = false;
-
-    flatpak.enable = true;
-
-    # Enable the KDE Plasma Desktop Environment.
-    # displayManager.sddm = {
-    #   enable = true;
-    #   settings.Theme = {
-    #     CursorTheme = "Adwaita";
-    #     Font = "Geist Light";
-    #   };
-    # };
-    # desktopManager.plasma6.enable = true;
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
-
-    # Configure keymap in X11
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-
-    # Enable CUPS to print documents.
-    printing.enable = true;
-
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
-
-    };
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    # services.xserver.libinput.enable = true;
-
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
@@ -132,182 +114,6 @@ in
       };
     };
   };
-
-  security.rtkit.enable = true;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kav = {
-    isNormalUser = true;
-    description = "kav";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    packages =
-      userPkgs.gui
-      ++ userPkgs.cli
-      ++ userPkgs.runtimes
-      ++ (with pkgs; [
-        mako
-        waybar
-        wofi
-        bluetuith
-        hyprpaper
-        hyprpicker
-        hyprlock
-        libnotify
-        pamixer
-        brightnessctl
-        polkit_gnome
-        gnome-software
-        nautilus
-        amberol
-        swayidle
-        udiskie
-      ]);
-    shell = pkgs.fish;
-  };
-
-  virtualisation.docker = {
-    enable = true;
-  };
-
-  fonts.packages = userPkgs.fonts;
-  programs = {
-    # firefox.enable = true;
-
-    niri.enable = true;
-
-    fish = {
-      enable = true;
-      shellAliases = {
-        ls = "eza --icons auto";
-        l = "ls";
-        ll = "ls -lah";
-      };
-    };
-
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [
-      # Core runtime
-      glibc
-      stdenv.cc.cc
-      zlib
-      libgcc
-      bash
-
-      # Common system libs
-      dbus
-      expat
-      libuuid
-      libxcb
-      libxkbcommon
-      libdrm
-      mesa
-
-      # X11
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXinerama
-      xorg.libXrender
-      xorg.libXext
-      xorg.libXi
-      xorg.libXfixes
-      xorg.libXdamage
-      xorg.libXScrnSaver
-      xorg.libXcomposite
-      xorg.libXxf86vm
-
-      # Wayland
-      wayland
-      wayland-protocols
-
-      # Audio
-      alsa-lib
-      pipewire
-
-      # Fonts / text
-      freetype
-      fontconfig
-      harfbuzz
-      pango
-      cairo
-
-      # Graphics & images
-      libGL
-      libGLU
-      libpng
-      libjpeg
-      libwebp
-      giflib
-      gdk-pixbuf
-
-      # Compression / archives
-      bzip2
-      xz
-      zstd
-
-      # Networking & crypto
-      openssl
-      curl
-      libnghttp2
-      krb5
-
-      # GTK
-      glib
-      gtk3
-      gtk4
-      atk
-      at-spi2-core
-      at-spi2-atk
-
-      # Misc
-      nspr
-      nss
-      libnotify
-      libsecret
-      libcap
-      libpulseaudio
-      cups
-    ];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    tmux
-    wget
-    gcc
-    git
-    adwaita-icon-theme
-    intel-media-driver
-  ];
-
-  networking = networkingConfig;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  services.tlp.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

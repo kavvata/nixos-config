@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
@@ -10,12 +10,14 @@ let
     inherit pkgs;
     hostName = "bookling";
   };
-  commonServices = import ../common/packages/services.nix { };
 in
 {
   imports = [
     # Include the results of the hardware scan.
+    ../common/optional/users.nix
     ../common/optional/greetd.nix
+    ../common/windowManagers/niri.nix
+    ../common/windowManagers/sway.nix
     ./hardware-configuration.nix
   ];
 
@@ -46,7 +48,7 @@ in
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services = commonServices.niriServices // {
+  services = {
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
@@ -87,16 +89,17 @@ in
 
   security.rtkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kav = {
-    isNormalUser = true;
-    description = "kav";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.ides ++ userPkgs.niriPkgs;
-    shell = pkgs.fish;
+  users.users.${config.local.userName} = {
+    packages =
+      userPkgs.gui
+      ++ userPkgs.cli
+      ++ userPkgs.runtimes
+      ++ userPkgs.ides
+      ++ (with pkgs; [
+        yt-dlp
+        python314Packages.yt-dlp-ejs
+        deno
+      ]);
   };
 
   virtualisation.docker = {
@@ -105,115 +108,12 @@ in
 
   fonts.packages = userPkgs.fonts;
 
-  programs = {
-    niri = {
-      enable = true;
-      useNautilus = true;
-    };
-
-    fish = {
-      enable = true;
-      useBabelfish = true;
-      shellAliases = {
-        ls = "eza --icons auto";
-        l = "ls";
-        ll = "ls -lah";
-      };
-    };
-
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [
-      # Core runtime
-      glibc
-      stdenv.cc.cc
-      zlib
-      libgcc
-      bash
-
-      # Common system libs
-      dbus
-      expat
-      libuuid
-      libxcb
-      libxkbcommon
-      libdrm
-      mesa
-
-      # X11
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXinerama
-      xorg.libXrender
-      xorg.libXext
-      xorg.libXi
-      xorg.libXfixes
-      xorg.libXdamage
-      xorg.libXScrnSaver
-      xorg.libXcomposite
-      xorg.libXxf86vm
-
-      # Wayland
-      wayland
-      wayland-protocols
-
-      # Audio
-      alsa-lib
-      pipewire
-
-      # Fonts / text
-      freetype
-      fontconfig
-      harfbuzz
-      pango
-      cairo
-
-      # Graphics & images
-      libGL
-      libGLU
-      libpng
-      libjpeg
-      libwebp
-      giflib
-      gdk-pixbuf
-
-      # Compression / archives
-      bzip2
-      xz
-      zstd
-
-      # Networking & crypto
-      openssl
-      curl
-      libnghttp2
-      krb5
-
-      # GTK
-      glib
-      gtk3
-      gtk4
-      atk
-      at-spi2-core
-      at-spi2-atk
-
-      # Misc
-      nspr
-      nss
-      libnotify
-      libsecret
-      libcap
-      libpulseaudio
-      cups
-    ];
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kdePackages.sddm-kcm
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     tmux
     wget
