@@ -21,6 +21,7 @@ rec {
   ];
 
   cli = [
+    file
     yazi
     btop
     killall
