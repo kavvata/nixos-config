@@ -95,6 +95,7 @@ in
       ++ userPkgs.cli
       ++ userPkgs.runtimes
       ++ userPkgs.ides
+      ++ userPkgs.tex
       ++ (with pkgs; [
         yt-dlp
         python314Packages.yt-dlp-ejs
