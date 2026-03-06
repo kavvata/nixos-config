@@ -20,6 +20,10 @@ rec {
     jetbrains.datagrip
   ];
 
+  tex = [
+    texliveFull
+  ];
+
   cli = [
     file
     yazi
