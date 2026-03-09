@@ -28,6 +28,7 @@ rec {
   cli = [
     file
     yazi
+    gowall
     btop
     killall
     fastfetch
