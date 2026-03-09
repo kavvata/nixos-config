@@ -5,6 +5,7 @@ rec {
   gui = [
     thunderbird
     foot
+    kitty
     helium
     legcord
     zathura
@@ -27,6 +28,7 @@ rec {
   cli = [
     file
     yazi
+    gowall
     btop
     killall
     fastfetch
