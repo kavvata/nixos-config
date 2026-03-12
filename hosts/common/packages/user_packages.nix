@@ -103,7 +103,6 @@ rec {
 
   niriPkgs = wmPkgs ++ [
     xwayland-satellite
-    noctalia-shell
   ];
 
   swayPkgs = wmPkgs ++ [
