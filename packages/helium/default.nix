@@ -47,11 +47,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "helium";
-  version = "0.9.4.1";
+  version = "0.10.4.1";
 
   src = fetchurl {
     url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64_linux.tar.xz";
-    hash = "sha256-qXuDUtank46O87jASxczmVMk0iD4JaZi2j9LSBe9VCM=";
+    hash = "sha256-GnCecE8aW/W7y37iSt/jdByZl/z57cWO+uzn7170l4c=";
   };
 
   sourceRoot = ".";
