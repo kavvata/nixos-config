@@ -77,6 +77,7 @@ rec {
     geist-font
     ibm-plex
     nerd-fonts.jetbrains-mono
+    nerd-fonts.victor-mono
     corefonts
     aegyptus
     maya
