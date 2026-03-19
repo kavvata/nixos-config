@@ -17,7 +17,6 @@ in
     ./hardware-configuration.nix
     ../common/optional/users.nix
     ../common/windowManagers/sway.nix
-    ../common/optional/greetd.nix
   ];
 
   nix.settings.experimental-features = [
@@ -75,8 +74,11 @@ in
   ];
 
   networking = networkingConfig;
-
   services = {
+    xserver.displayManager.lightdm.greeters.pantheon.enable = true;
+    xserver.displayManager.lightdm.enable = true;
+    desktopManager.pantheon.enable = true;
+
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
@@ -113,6 +115,7 @@ in
         };
       };
     };
+
   };
 
   # This value determines the NixOS release from which the default

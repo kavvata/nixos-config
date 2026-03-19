@@ -5,10 +5,10 @@ rec {
     gvfs.enable = true;
     udisks2.enable = true;
 
-    xserver.enable = false;
+    xserver.enable = true;
 
     flatpak.enable = true;
-    tlp.enable = true;
+    # tlp.enable = true;
 
     xserver.xkb = {
       layout = "us";
