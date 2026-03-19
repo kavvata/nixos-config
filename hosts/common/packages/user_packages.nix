@@ -78,6 +78,7 @@ rec {
     ibm-plex
     nerd-fonts.jetbrains-mono
     nerd-fonts.victor-mono
+    nerd-fonts.iosevka-term
     corefonts
     aegyptus
     maya
