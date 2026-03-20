@@ -13,7 +13,6 @@ rec {
     libreoffice-fresh
     dconf-editor
     amberol
-    gnome-software
     nautilus
   ];
 
