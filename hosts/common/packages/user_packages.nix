@@ -4,7 +4,6 @@ with pkgs;
 rec {
   gui = [
     thunderbird
-    foot
     kitty
     helium
     legcord
@@ -13,7 +12,6 @@ rec {
     libreoffice-fresh
     dconf-editor
     amberol
-    nautilus
   ];
 
   ides = [

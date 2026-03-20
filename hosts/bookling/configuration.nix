@@ -6,6 +6,8 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+  customServices = import ../common/packages/services.nix { };
+  customPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "bookling";
@@ -15,9 +17,6 @@ in
   imports = [
     # Include the results of the hardware scan.
     ../common/optional/users.nix
-    ../common/optional/greetd.nix
-    ../common/windowManagers/niri.nix
-    ../common/windowManagers/sway.nix
     ./hardware-configuration.nix
   ];
 
@@ -32,23 +31,36 @@ in
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
+  i18n = {
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+    defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_BR.UTF-8";
-    LC_IDENTIFICATION = "pt_BR.UTF-8";
-    LC_MEASUREMENT = "pt_BR.UTF-8";
-    LC_MONETARY = "pt_BR.UTF-8";
-    LC_NAME = "pt_BR.UTF-8";
-    LC_NUMERIC = "pt_BR.UTF-8";
-    LC_PAPER = "pt_BR.UTF-8";
-    LC_TELEPHONE = "pt_BR.UTF-8";
-    LC_TIME = "pt_BR.UTF-8";
+    inputMethod.type = "ibus";
+    inputMethod.enable = true;
+
+    extraLocaleSettings = {
+      LC_ADDRESS = "pt_BR.UTF-8";
+      LC_IDENTIFICATION = "pt_BR.UTF-8";
+      LC_MEASUREMENT = "pt_BR.UTF-8";
+      LC_MONETARY = "pt_BR.UTF-8";
+      LC_NAME = "pt_BR.UTF-8";
+      LC_NUMERIC = "pt_BR.UTF-8";
+      LC_PAPER = "pt_BR.UTF-8";
+      LC_TELEPHONE = "pt_BR.UTF-8";
+      LC_TIME = "pt_BR.UTF-8";
+    };
   };
 
-  services = {
+  services = customServices.defaultServices // {
+    # NOTE: why elementary
+    xserver = {
+      enable = true;
+      displayManager.lightdm.greeters.pantheon.enable = true;
+      displayManager.lightdm.enable = true;
+    };
+
+    desktopManager.pantheon.enable = true;
+
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
@@ -123,6 +135,8 @@ in
     adwaita-icon-theme
     intel-media-driver
   ];
+
+  programs = customPrograms.defaultPrograms;
 
   networking = networkingConfig;
 
