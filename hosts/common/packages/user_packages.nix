@@ -5,7 +5,7 @@ rec {
   gui = [
     thunderbird
     foot
-    kitty
+    ghostty
     helium
     legcord
     zathura
