@@ -6,6 +6,8 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
+  customServices = import ../common/packages/services.nix { };
+  customPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "think";
@@ -16,7 +18,6 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common/optional/users.nix
-    ../common/windowManagers/sway.nix
   ];
 
   nix.settings.experimental-features = [
@@ -77,10 +78,16 @@ in
     intel-media-driver
   ];
 
+  programs = customPrograms.defaultPrograms;
+
   networking = networkingConfig;
-  services = {
-    xserver.displayManager.lightdm.greeters.pantheon.enable = true;
-    xserver.displayManager.lightdm.enable = true;
+  services = customServices.defaultServices // {
+    xserver = {
+      enable = true;
+      displayManager.lightdm.greeters.pantheon.enable = true;
+      displayManager.lightdm.enable = true;
+    };
+
     desktopManager.pantheon.enable = true;
 
     syncthing = {
