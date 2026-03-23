@@ -16,6 +16,7 @@ rec {
 
   ides = [
     jetbrains.datagrip
+    zed-editor
   ];
 
   tex = [
