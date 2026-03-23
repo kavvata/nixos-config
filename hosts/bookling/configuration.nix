@@ -6,8 +6,6 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
-  customServices = import ../common/packages/services.nix { };
-  customPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "bookling";
@@ -18,6 +16,7 @@ in
     # Include the results of the hardware scan.
     ../common/optional/users.nix
     ./hardware-configuration.nix
+    ../common/windowManagers/pantheon.nix
   ];
 
   nix.settings.experimental-features = [
@@ -35,9 +34,6 @@ in
 
     defaultLocale = "en_US.UTF-8";
 
-    inputMethod.type = "ibus";
-    inputMethod.enable = true;
-
     extraLocaleSettings = {
       LC_ADDRESS = "pt_BR.UTF-8";
       LC_IDENTIFICATION = "pt_BR.UTF-8";
@@ -51,16 +47,7 @@ in
     };
   };
 
-  services = customServices.defaultServices // {
-    # NOTE: why elementary
-    xserver = {
-      enable = true;
-      displayManager.lightdm.greeters.pantheon.enable = true;
-      displayManager.lightdm.enable = true;
-    };
-
-    desktopManager.pantheon.enable = true;
-
+  services = {
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
@@ -136,8 +123,6 @@ in
     intel-media-driver
   ];
 
-  programs = customPrograms.defaultPrograms;
-
   networking = networkingConfig;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -166,5 +151,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }

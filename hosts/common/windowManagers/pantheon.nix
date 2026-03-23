@@ -1,12 +1,10 @@
 {
   pkgs,
-  config,
   ...
 }:
 let
   commonServices = import ../packages/services.nix { };
   commonPrograms = import ../packages/programs.nix { inherit pkgs; };
-  userPkgs = import ../packages/user_packages.nix { inherit pkgs; };
 in
 {
   i18n = {
@@ -22,9 +20,6 @@ in
     desktopManager.pantheon.enable = true;
 
   };
-  programs = commonPrograms.defaultPrograms;
 
-  users.users.${config.local.userName} = {
-    packages = userPkgs.niriPkgs;
-  };
+  programs = commonPrograms.defaultPrograms;
 }
