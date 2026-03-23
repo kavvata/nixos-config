@@ -55,8 +55,6 @@
 
   # sleep and hibernate
   services.logind.settings.Login.LidSwitch = "suspend-then-hibernate";
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
+  systemd.sleep.settings.Sleep.HibernateDelaySec = "30m";
+  systemd.sleep.settings.Sleep.SuspendState = "mem";
 }
