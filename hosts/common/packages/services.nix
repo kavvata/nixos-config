@@ -5,8 +5,6 @@ rec {
     gvfs.enable = true;
     udisks2.enable = true;
 
-    xserver.enable = true;
-
     flatpak.enable = true;
     # tlp.enable = true;
 
