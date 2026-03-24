@@ -18,6 +18,7 @@
         "wheel"
         "docker"
       ];
+      packages = [ pkgs.fish ];
       shell = pkgs.fish;
     };
   };

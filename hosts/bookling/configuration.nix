@@ -16,7 +16,8 @@ in
     # Include the results of the hardware scan.
     ../common/optional/users.nix
     ./hardware-configuration.nix
-    ../common/windowManagers/pantheon.nix
+    ../common/windowManagers/niri.nix
+    ../common/optional/greetd.nix
   ];
 
   nix.settings.experimental-features = [
