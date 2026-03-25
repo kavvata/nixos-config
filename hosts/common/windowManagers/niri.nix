@@ -12,6 +12,6 @@ in
   services = commonServices.niriServices;
   programs = commonPrograms.niriPrograms;
   users.users.${config.local.userName} = {
-    packages = userPkgs.niriPkgs;
+    packages = userPkgs.niriPkgs ++ (with pkgs; [ nautilus ]);
   };
 }
