@@ -6,7 +6,6 @@ rec {
     udisks2.enable = true;
 
     flatpak.enable = true;
-    # tlp.enable = true;
 
     xserver.xkb = {
       layout = "us";
@@ -28,9 +27,11 @@ rec {
   };
   niriServices = defaultServices // {
     upower.enable = true;
+    tlp.enable = true;
   };
 
   swayServices = defaultServices // {
     gnome.gnome-keyring.enable = true;
+    tlp.enable = true;
   };
 }
