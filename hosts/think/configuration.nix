@@ -6,8 +6,6 @@
 
 let
   userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
-  customServices = import ../common/packages/services.nix { };
-  customPrograms = import ../common/packages/programs.nix { inherit pkgs; };
   networkingConfig = import ../common/optional/networking.nix {
     inherit pkgs;
     hostName = "think";
@@ -18,6 +16,8 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common/optional/users.nix
+    ../common/windowManagers/sway.nix
+    ../common/optional/greetd.nix
   ];
 
   nix.settings.experimental-features = [
@@ -78,18 +78,9 @@ in
     intel-media-driver
   ];
 
-  programs = customPrograms.defaultPrograms;
-
   networking = networkingConfig;
-  services = customServices.defaultServices // {
-    xserver = {
-      enable = true;
-      displayManager.lightdm.greeters.pantheon.enable = true;
-      displayManager.lightdm.enable = true;
-    };
 
-    desktopManager.pantheon.enable = true;
-
+  services = {
     syncthing = {
       enable = true;
       openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
