@@ -16,6 +16,8 @@ in
     };
   };
 
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
   # this is a life saver.
   # literally no documentation about this anywhere.
   # might be good to write about this...
