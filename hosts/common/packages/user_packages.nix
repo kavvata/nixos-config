@@ -9,7 +9,6 @@ rec {
     legcord
     zathura
     mpv
-    imv
     libreoffice-fresh
     dconf-editor
     amberol
@@ -89,6 +88,8 @@ rec {
     fuzzel
     mako
     waybar
+    imv
+    mpv
     wofi
     bluetuith
     swaybg
