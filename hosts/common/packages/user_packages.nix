@@ -9,6 +9,7 @@ rec {
     legcord
     zathura
     mpv
+    imv
     libreoffice-fresh
     dconf-editor
     amberol
