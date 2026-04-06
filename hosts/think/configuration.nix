@@ -55,7 +55,14 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   users.users.${config.local.userName} = {
-    packages = userPkgs.gui ++ userPkgs.cli ++ userPkgs.runtimes ++ userPkgs.tex;
+    packages =
+      userPkgs.gui
+      ++ userPkgs.cli
+      ++ userPkgs.runtimes
+      ++ userPkgs.tex
+      ++ (with pkgs; [
+        gimp
+      ]);
   };
   virtualisation.docker = {
     enable = true;
