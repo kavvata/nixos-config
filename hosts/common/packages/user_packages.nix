@@ -111,5 +111,6 @@ rec {
     autotiling-rs
     grim
     slurp
+    nautilus
   ];
 }
