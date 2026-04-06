@@ -14,4 +14,9 @@ in
   users.users.${config.local.userName} = {
     packages = userPkgs.swayPkgs;
   };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 }
