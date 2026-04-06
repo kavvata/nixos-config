@@ -60,6 +60,7 @@ rec {
     httpie
     jq
     nvd
+    gpu-screen-recorder
   ];
 
   runtimes = [
