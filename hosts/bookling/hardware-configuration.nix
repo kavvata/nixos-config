@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }:
 
@@ -49,9 +50,17 @@
   swapDevices = [ { device = "/dev/disk/by-uuid/c13e9d86-8a11-4138-a5d4-f97e28927cc3"; } ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+      ];
+    };
 
-  hardware.bluetooth.enable = true;
+    bluetooth.enable = true;
+  };
 
   # sleep and hibernate
   powerManagement.enable = true;
