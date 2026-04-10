@@ -23,6 +23,7 @@ rec {
   ];
 
   cli = [
+    ncpamixer
     file
     yazi
     gowall
