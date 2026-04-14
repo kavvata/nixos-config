@@ -17,6 +17,7 @@ in
     ../common/optional/users.nix
     ./hardware-configuration.nix
     ../common/windowManagers/niri.nix
+    ../common/windowManagers/sway.nix
     ../common/optional/greetd.nix
   ];
 
