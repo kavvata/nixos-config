@@ -78,6 +78,7 @@ rec {
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka-term
     nerd-fonts.iosevka-term-slab
+    ioskeley-mono.semiCondensed-NF
     corefonts
     aegyptus
     maya
