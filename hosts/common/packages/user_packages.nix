@@ -12,6 +12,8 @@ rec {
     libreoffice-fresh
     dconf-editor
     amberol
+    loupe
+    obsidian
   ];
 
   ides = [
