@@ -3,10 +3,27 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      zen-browser,
+      ...
+    }@inputs:
+    let
+      overlays = [
+        (import ./overlays/helium.nix)
+        (final: prev: {
+          zen-browser = zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
+        })
+      ];
+    in
     {
       nixosConfigurations = {
 
@@ -16,7 +33,7 @@
             (
               { _, ... }:
               {
-                nixpkgs.overlays = [ (import ./overlays/helium.nix) ];
+                nixpkgs.overlays = overlays;
               }
             )
             ./hosts/bookling/configuration.nix
@@ -28,7 +45,7 @@
             (
               { _, ... }:
               {
-                nixpkgs.overlays = [ (import ./overlays/helium.nix) ];
+                nixpkgs.overlays = overlays;
               }
             )
             ./hosts/think/configuration.nix
