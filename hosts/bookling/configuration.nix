@@ -102,6 +102,7 @@ in
         python314Packages.yt-dlp-ejs
         deno
         gpu-screen-recorder
+        zen-browser
       ]);
   };
 
