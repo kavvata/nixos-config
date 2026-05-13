@@ -3,6 +3,7 @@
 with pkgs;
 rec {
   gui = [
+    footage
     thunderbird
     kitty
     helium
