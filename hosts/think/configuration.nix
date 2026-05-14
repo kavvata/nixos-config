@@ -62,6 +62,7 @@ in
       ++ userPkgs.tex
       ++ (with pkgs; [
         gimp
+        zen-browser
       ]);
   };
   virtualisation.docker = {
