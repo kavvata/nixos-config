@@ -106,6 +106,7 @@ rec {
     polkit_gnome
     swayidle
     udiskie
+    opencode
   ];
 
   niriPkgs = wmPkgs ++ [
