@@ -26,6 +26,7 @@ rec {
   ];
 
   cli = [
+    nmap
     ncpamixer
     file
     yazi
