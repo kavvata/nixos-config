@@ -28,6 +28,7 @@ rec {
   niriServices = defaultServices // {
     upower.enable = true;
     tlp.enable = true;
+    gnome.gnome-keyring.enable = true;
   };
 
   swayServices = defaultServices // {

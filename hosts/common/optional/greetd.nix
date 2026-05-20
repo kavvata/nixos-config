@@ -16,7 +16,15 @@ in
     };
   };
 
-  security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
+  };
+
+  services.dbus.packages = [
+    pkgs.gnome-keyring
+    pkgs.gcr
+  ];
 
   # this is a life saver.
   # literally no documentation about this anywhere.
