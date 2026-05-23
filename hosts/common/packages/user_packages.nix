@@ -26,6 +26,7 @@ rec {
   ];
 
   cli = [
+    pi-coding-agent
     nmap
     ncpamixer
     file
