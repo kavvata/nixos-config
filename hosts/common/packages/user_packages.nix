@@ -3,6 +3,7 @@
 with pkgs;
 rec {
   gui = [
+    zotero
     footage
     thunderbird
     kitty
