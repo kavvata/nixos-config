@@ -66,6 +66,7 @@ rec {
     dust
     httpie
     jq
+    yq
     nvd
     gpu-screen-recorder
   ];
