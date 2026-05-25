@@ -42,6 +42,7 @@ rec {
     uv
     fzf
     ripgrep
+    ripgrep-all
     fd
     tldr
     chezmoi
