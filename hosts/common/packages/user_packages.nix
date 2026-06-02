@@ -83,11 +83,9 @@ rec {
     inter
     geist-font
     ibm-plex
-    nerd-fonts.jetbrains-mono
     nerd-fonts.victor-mono
     nerd-fonts.iosevka-term
     nerd-fonts.iosevka-term-slab
-    ioskeley-mono.semiCondensed-NF
     corefonts
     aegyptus
     maya
