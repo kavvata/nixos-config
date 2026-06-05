@@ -69,6 +69,7 @@ rec {
     yq
     nvd
     gpu-screen-recorder
+    pgcli
   ];
 
   runtimes = [
