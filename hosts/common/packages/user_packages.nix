@@ -16,6 +16,7 @@ rec {
     amberol
     loupe
     obsidian
+    sone
   ];
 
   ides = [
