@@ -49,6 +49,7 @@ rec {
     gh
     zoxide
     lazygit
+    hugo
     lazydocker
     zip
     unzip
