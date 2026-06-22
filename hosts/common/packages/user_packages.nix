@@ -72,6 +72,10 @@ rec {
     nvd
     gpu-screen-recorder
     pgcli
+    k9s
+    kubectl
+    kubernetes-helm
+    helmfile
   ];
 
   runtimes = [
@@ -115,6 +119,7 @@ rec {
     swayidle
     udiskie
     opencode
+    awscli2
   ];
 
   niriPkgs = wmPkgs ++ [
