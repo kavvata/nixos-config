@@ -17,6 +17,7 @@ rec {
     loupe
     obsidian
     sone
+    metadata-cleaner
   ];
 
   ides = [
