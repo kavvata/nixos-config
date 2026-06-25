@@ -21,6 +21,7 @@ rec {
 
   ides = [
     jetbrains.datagrip
+    bruno
   ];
 
   tex = [
@@ -76,6 +77,7 @@ rec {
     kubectl
     kubernetes-helm
     helmfile
+    pandoc
   ];
 
   runtimes = [
