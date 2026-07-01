@@ -23,7 +23,6 @@ rec {
   ides = [
     jetbrains.datagrip
     bruno
-    emacs
   ];
 
   tex = [
@@ -89,7 +88,6 @@ rec {
     go
     pipenv
     nodejs_24
-    cmakeMinimal
   ];
 
   fonts = [
