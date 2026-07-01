@@ -97,6 +97,7 @@ rec {
     geist-font
     ibm-plex
     nerd-fonts.victor-mono
+    nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka-term
     nerd-fonts.iosevka-term-slab
     corefonts
