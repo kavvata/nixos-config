@@ -89,6 +89,7 @@ rec {
     go
     pipenv
     nodejs_24
+    cmakeMinimal
   ];
 
   fonts = [
