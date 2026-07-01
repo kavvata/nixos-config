@@ -23,6 +23,7 @@ rec {
   ides = [
     jetbrains.datagrip
     bruno
+    emacs
   ];
 
   tex = [
