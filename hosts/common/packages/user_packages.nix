@@ -81,6 +81,7 @@ rec {
     helmfile
     pandoc
     tesseract4
+    ocrmypdf
   ];
 
   runtimes = [
