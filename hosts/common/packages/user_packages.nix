@@ -80,6 +80,7 @@ rec {
     kubernetes-helm
     helmfile
     pandoc
+    tesseract4
   ];
 
   runtimes = [
