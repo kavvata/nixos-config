@@ -1,158 +1,52 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ pkgs, ... }:
 
-{ pkgs, config, ... }:
-
-let
-  userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
-  networkingConfig = import ../common/optional/networking.nix {
-    inherit pkgs;
-    hostName = "bookling";
-  };
-in
 {
   imports = [
-    # Include the results of the hardware scan.
-    ../common/optional/users.nix
     ./hardware-configuration.nix
+    ../common/core.nix
+    ../common/users.nix
+    ../common/networking.nix
+    ../common/services.nix
+    ../common/programs.nix
+    ../common/user_packages.nix
+    ../common/syncthing.nix
     ../common/windowManagers/niri.nix
     ../common/windowManagers/sway.nix
-    ../common/optional/greetd.nix
+    ../common/greetd.nix
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  networking.hostName = "bookling";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Sao_Paulo";
-  i18n = {
-
-    defaultLocale = "en_US.UTF-8";
-
-    extraLocaleSettings = {
-      LC_ADDRESS = "pt_BR.UTF-8";
-      LC_IDENTIFICATION = "pt_BR.UTF-8";
-      LC_MEASUREMENT = "pt_BR.UTF-8";
-      LC_MONETARY = "pt_BR.UTF-8";
-      LC_NAME = "pt_BR.UTF-8";
-      LC_NUMERIC = "pt_BR.UTF-8";
-      LC_PAPER = "pt_BR.UTF-8";
-      LC_TELEPHONE = "pt_BR.UTF-8";
-      LC_TIME = "pt_BR.UTF-8";
+  syncthing.devices = {
+    "iPhone" = {
+      id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
+    };
+    "think" = {
+      id = "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
+    };
+  };
+  syncthing.folders = {
+    MDBase = {
+      id = "wgfwx-uf9em";
+      path = "/home/kav/Documents/Notes/MDBase/";
+      devices = [ "iPhone" "think" ];
+      ignorePatterns = [ ".obsidian/appearance.json" ];
+    };
+    Ledger = {
+      id = "ubpxwp-upnxl";
+      path = "/home/kav/Documents/Finances/Ledger/";
+      devices = [ "iPhone" "think" ];
+      ignorePatterns = [ ".venv" ];
     };
   };
 
-  services = {
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-      user = "kav";
-      configDir = "/home/kav/.config/syncthing";
-      settings = {
-        devices = {
-          "iPhone" = {
-            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
-          };
-          "think" = {
-            id = "S4L57FL-2OBPEYH-FLB76FW-ZCINPPI-B7HLMUD-3CHQ3TK-4Z7GTRK-X7RLNAQ";
-          };
-        };
-        folders = {
-          MDBase = {
-            id = "wgfwx-uf9em";
-            path = "/home/kav/Documents/Notes/MDBase/";
-            devices = [
-              "iPhone"
-              "think"
-            ];
-            ignorePatterns = [ ".obsidian/appearance.json" ];
-          };
-          Ledger = {
-            id = "ubpxwp-upnxl";
-            path = "/home/kav/Documents/Finances/Ledger/";
-            devices = [
-              "iPhone"
-              "think"
-            ];
-            ignorePatterns = [ ".venv" ];
-          };
-        };
-      };
-    };
-  };
-
-  security.rtkit.enable = true;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${config.local.userName} = {
-    packages =
-      userPkgs.gui
-      ++ userPkgs.cli
-      ++ userPkgs.runtimes
-      ++ userPkgs.ides
-      ++ userPkgs.tex
-      ++ (with pkgs; [
-        yt-dlp
-        python314Packages.yt-dlp-ejs
-        deno
-        gpu-screen-recorder
-        zen-browser
-      ]);
-  };
-
-  virtualisation.docker = {
-    enable = true;
-  };
-
-  fonts.packages = userPkgs.fonts;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    tmux
-    wget
-    gcc
-    git
-    adwaita-icon-theme
-    intel-media-driver
+  local.extraPkgs = with pkgs; [
+    yt-dlp
+    python314Packages.yt-dlp-ejs
+    deno
+    gpu-screen-recorder
+    zen-browser
   ];
 
-  networking = networkingConfig;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "25.11";
 }

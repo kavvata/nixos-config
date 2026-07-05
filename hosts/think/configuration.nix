@@ -1,139 +1,53 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ pkgs, ... }:
 
-{ pkgs, config, ... }:
-
-let
-  userPkgs = import ../common/packages/user_packages.nix { inherit pkgs; };
-  networkingConfig = import ../common/optional/networking.nix {
-    inherit pkgs;
-    hostName = "think";
-  };
-in
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../common/optional/users.nix
+    ../common/core.nix
+    ../common/users.nix
+    ../common/networking.nix
+    ../common/services.nix
+    ../common/programs.nix
+    ../common/user_packages.nix
+    ../common/syncthing.nix
     ../common/windowManagers/sway.nix
-    ../common/optional/greetd.nix
+    ../common/greetd.nix
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  networking.hostName = "think";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Sao_Paulo";
-  i18n = {
-
-    # Select internationalisation properties.
-    defaultLocale = "en_US.UTF-8";
-    inputMethod.type = "ibus";
-    inputMethod.enable = true;
-
-    extraLocaleSettings = {
-      LC_ADDRESS = "pt_BR.UTF-8";
-      LC_IDENTIFICATION = "pt_BR.UTF-8";
-      LC_MEASUREMENT = "pt_BR.UTF-8";
-      LC_MONETARY = "pt_BR.UTF-8";
-      LC_NAME = "pt_BR.UTF-8";
-      LC_NUMERIC = "pt_BR.UTF-8";
-      LC_PAPER = "pt_BR.UTF-8";
-      LC_TELEPHONE = "pt_BR.UTF-8";
-      LC_TIME = "pt_BR.UTF-8";
-    };
-  };
-
-  security.rtkit.enable = true;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-
-  users.users.${config.local.userName} = {
-    packages =
-      userPkgs.gui
-      ++ userPkgs.cli
-      ++ userPkgs.runtimes
-      ++ userPkgs.tex
-      ++ (with pkgs; [
-        gimp
-        zen-browser
-      ]);
-  };
-  virtualisation.docker = {
+  i18n.inputMethod = {
+    type = "ibus";
     enable = true;
   };
 
-  fonts.packages = userPkgs.fonts;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    tmux
-    wget
-    gcc
-    git
-    adwaita-icon-theme
-    intel-media-driver
-  ];
-
-  networking = networkingConfig;
-
-  services = {
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
-      user = "kav";
-      configDir = "/home/kav/.config/syncthing";
-      settings = {
-        devices = {
-          "iPhone" = {
-            id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
-          };
-          "bookling" = {
-            id = "TXX6RBS-67UIR5Y-PLMROC4-XJ2AZGY-7XNFGTT-ISHY2SM-2TR6TAN-2EY6YAY";
-          };
-        };
-        folders = {
-          MDBase = {
-            id = "wgfwx-uf9em";
-            path = "/home/kav/Documents/Notes/MDBase/";
-            devices = [
-              "iPhone"
-              "bookling"
-            ];
-            ignorePatterns = [ ".obsidian/appearance.json" ];
-          };
-          Ledger = {
-            id = "ubpxwp-upnxl";
-            path = "/home/kav/Documents/Finances/Ledger/";
-            devices = [
-              "iPhone"
-              "bookling"
-            ];
-            ignorePatterns = [ ".venv" ];
-          };
-        };
-      };
+  syncthing.devices = {
+    "iPhone" = {
+      id = "UPZ5AL3-VNLIC7Q-BSLQ3QX-EVT4LOX-OJB3442-BRDLMJU-ZSFPCQ5-X43G5QM";
     };
-
+    "bookling" = {
+      id = "TXX6RBS-67UIR5Y-PLMROC4-XJ2AZGY-7XNFGTT-ISHY2SM-2TR6TAN-2EY6YAY";
+    };
+  };
+  syncthing.folders = {
+    MDBase = {
+      id = "wgfwx-uf9em";
+      path = "/home/kav/Documents/Notes/MDBase/";
+      devices = [ "iPhone" "bookling" ];
+      ignorePatterns = [ ".obsidian/appearance.json" ];
+    };
+    Ledger = {
+      id = "ubpxwp-upnxl";
+      path = "/home/kav/Documents/Finances/Ledger/";
+      devices = [ "iPhone" "bookling" ];
+      ignorePatterns = [ ".venv" ];
+    };
   };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  local.extraPkgs = with pkgs; [
+    gimp
+    zen-browser
+  ];
 
+  system.stateVersion = "25.11";
 }
