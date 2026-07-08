@@ -1,3 +1,4 @@
 pkgs: with pkgs; [
-  jetbrains.datagrip bruno vscode
+  bruno
+  vscode
 ]
