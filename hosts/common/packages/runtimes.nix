@@ -5,4 +5,11 @@ pkgs: with pkgs; [
   go
   pipenv
   nodejs_24
+  cmake
+  libtool
+  nixfmt
+  nil
+  ty
+  ruff
+  shellcheck
 ]
