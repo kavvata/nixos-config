@@ -12,4 +12,5 @@ pkgs: with pkgs; [
   ty
   ruff
   shellcheck
+  graphviz
 ]
