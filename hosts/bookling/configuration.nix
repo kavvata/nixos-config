@@ -29,13 +29,27 @@
     MDBase = {
       id = "wgfwx-uf9em";
       path = "/home/kav/Documents/Notes/MDBase/";
-      devices = [ "iPhone" "think" ];
+      devices = [
+        "iPhone"
+        "think"
+      ];
       ignorePatterns = [ ".obsidian/appearance.json" ];
+    };
+    Org = {
+      id = "mhmxx-ymd6i";
+      path = "/home/kav/Documents/Notes/org/";
+      devices = [
+        "iPhone"
+        "think"
+      ];
     };
     Ledger = {
       id = "ubpxwp-upnxl";
       path = "/home/kav/Documents/Finances/Ledger/";
-      devices = [ "iPhone" "think" ];
+      devices = [
+        "iPhone"
+        "think"
+      ];
       ignorePatterns = [ ".venv" ];
     };
   };
