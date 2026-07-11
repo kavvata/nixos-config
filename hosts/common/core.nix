@@ -3,7 +3,13 @@
 {
   options.my = {
     wms = lib.mkOption {
-      type = lib.types.listOf (lib.types.enum [ "niri" "sway" "pantheon" ]);
+      type = lib.types.listOf (
+        lib.types.enum [
+          "niri"
+          "sway"
+          "pantheon"
+        ]
+      );
       default = [ ];
     };
     userName = lib.mkOption {
