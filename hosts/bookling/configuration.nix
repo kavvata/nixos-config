@@ -35,14 +35,6 @@
       ];
       ignorePatterns = [ ".obsidian/appearance.json" ];
     };
-    Org = {
-      id = "mhmxx-ymd6i";
-      path = "/home/kav/Documents/Notes/org/";
-      devices = [
-        "iPhone"
-        "think"
-      ];
-    };
     Ledger = {
       id = "ubpxwp-upnxl";
       path = "/home/kav/Documents/Finances/Ledger/";
