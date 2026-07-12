@@ -13,4 +13,5 @@ pkgs: with pkgs; [
   obsidian
   sone
   metadata-cleaner
+  nicotine-plus
 ]
