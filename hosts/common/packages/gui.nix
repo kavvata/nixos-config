@@ -14,4 +14,5 @@ pkgs: with pkgs; [
   sone
   metadata-cleaner
   nicotine-plus
+  gnome-obfuscate
 ]
