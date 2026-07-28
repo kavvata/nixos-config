@@ -15,4 +15,5 @@ pkgs: with pkgs; [
   metadata-cleaner
   nicotine-plus
   gnome-obfuscate
+  gnucash
 ]
