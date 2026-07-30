@@ -7,6 +7,10 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +22,7 @@
       self,
       nixpkgs,
       zen-browser,
+      helium,
       sops-nix,
       ...
     }@inputs:
@@ -25,7 +30,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      mkHost = hostName: modules:
+      mkHost =
+        hostName: modules:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -34,12 +40,14 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   zen-browser = zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
+                  helium = helium.packages.${prev.stdenv.hostPlatform.system}.default;
                 })
               ];
             }
             sops-nix.nixosModules.sops
             ({ ... }: { networking.hostName = hostName; })
-          ] ++ modules;
+          ]
+          ++ modules;
         };
     in
     {
