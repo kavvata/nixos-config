@@ -16,4 +16,6 @@ pkgs: with pkgs; [
   nicotine-plus
   gnome-obfuscate
   gnucash
+  zen-browser
+  helium
 ]
