@@ -47,11 +47,10 @@
   };
 
   local.extraPkgs = with pkgs; [
-    yt-dlp
-    python314Packages.yt-dlp-ejs
-    deno
+    # yt-dlp
+    # python314Packages.yt-dlp-ejs
+    # deno
     gpu-screen-recorder
-    zen-browser
   ];
 
   system.stateVersion = "25.11";
