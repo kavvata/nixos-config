@@ -44,4 +44,6 @@ pkgs: with pkgs; [
   pandoc
   tesseract4
   ocrmypdf
+  pi-coding-agent
+  herdr
 ]
