@@ -15,6 +15,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neu-nix = {
+      url = "github:ricardomaps/neu-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,6 +28,7 @@
       zen-browser,
       helium,
       sops-nix,
+      neu-nix,
       ...
     }@inputs:
     let
@@ -42,6 +47,7 @@
                   zen-browser = zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
                   helium = helium.packages.${prev.stdenv.hostPlatform.system}.default;
                 })
+                neu-nix.overlays.default
               ];
             }
             sops-nix.nixosModules.sops

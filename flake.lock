@@ -22,6 +22,26 @@
         "type": "github"
       }
     },
+    "neu-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786392839,
+        "narHash": "sha256-piSAkt7T+zQwwRM7OFUM8POi4yc0RuMze1+wLY5vCHg=",
+        "owner": "ricardomaps",
+        "repo": "neu-nix",
+        "rev": "e72fa0c5486b300ee01d45ef3d9566bb6fd0f635",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ricardomaps",
+        "repo": "neu-nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1786384358,
@@ -57,6 +77,7 @@
     "root": {
       "inputs": {
         "helium": "helium",
+        "neu-nix": "neu-nix",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"
