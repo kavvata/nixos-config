@@ -33,18 +33,25 @@
     MDBase = {
       id = "wgfwx-uf9em";
       path = "/home/kav/Documents/Notes/MDBase/";
-      devices = [ "iPhone" "bookling" ];
+      devices = [
+        "iPhone"
+        "bookling"
+      ];
       ignorePatterns = [ ".obsidian/appearance.json" ];
     };
     Ledger = {
       id = "ubpxwp-upnxl";
       path = "/home/kav/Documents/Finances/Ledger/";
-      devices = [ "iPhone" "bookling" ];
+      devices = [
+        "iPhone"
+        "bookling"
+      ];
       ignorePatterns = [ ".venv" ];
     };
   };
 
   local.extraPkgs = with pkgs; [
+    hevel
     gimp
     zen-browser
   ];
