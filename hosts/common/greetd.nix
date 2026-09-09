@@ -1,13 +1,22 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
   wms = config.my.wms;
   session =
-    if lib.elem "sway" wms then "sway"
-    else if lib.elem "pantheon" wms then "pantheon"
-    else "niri-session";
-in {
+    if lib.elem "sway" wms then
+      "sway"
+    else if lib.elem "pantheon" wms then
+      "pantheon"
+    else
+      "niri-session";
+in
+{
   services.greetd = {
     enable = true;
     settings = {
@@ -25,7 +34,7 @@ in {
 
   services.dbus.packages = [
     pkgs.gnome-keyring
-    pkgs.gcr
+    pkgs.gcr_4
   ];
 
   systemd.services.greetd.serviceConfig = {
