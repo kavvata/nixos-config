@@ -44,6 +44,14 @@
       ];
       ignorePatterns = [ ".venv" ];
     };
+    Zotero = {
+      id = "6gdzd-mrwha";
+      path = "/home/kav/Zotero/";
+      devices = [
+        "think"
+      ];
+      ignorePatterns = [ ".sqlite.bak" ];
+    };
   };
 
   local.extraPkgs = with pkgs; [
