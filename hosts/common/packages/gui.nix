@@ -6,7 +6,7 @@ pkgs: with pkgs; [
   legcord
   zathura
   mpv
-  libreoffice-fresh
+  libreoffice
   dconf-editor
   amberol
   loupe
