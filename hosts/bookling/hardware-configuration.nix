@@ -59,7 +59,12 @@
       ];
     };
 
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      settings.Policy = {
+        AutoEnable = false;
+      };
+    };
   };
 
   # sleep and hibernate

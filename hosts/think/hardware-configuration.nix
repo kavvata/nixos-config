@@ -52,7 +52,12 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      settings.Policy = {
+        AutoEnable = false;
+      };
+    };
     graphics = {
       enable = true;
       extraPackages = with pkgs; [
