@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,6 +22,7 @@
     {
       self,
       nixpkgs,
+      hermes-agent,
       zen-browser,
       helium,
       sops-nix,
@@ -45,6 +47,7 @@
               ];
             }
             sops-nix.nixosModules.sops
+            hermes-agent.nixosModules.default
             ({ ... }: { networking.hostName = hostName; })
           ]
           ++ modules;

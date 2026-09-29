@@ -7,6 +7,7 @@
     ../common/users.nix
     ../common/networking.nix
     ../common/services.nix
+    ../common/hermes.nix
     ../common/programs.nix
     ../common/user_packages.nix
     ../common/syncthing.nix
