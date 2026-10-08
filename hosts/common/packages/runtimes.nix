@@ -5,6 +5,7 @@ pkgs: with pkgs; [
   go
   pipenv
   nodejs_24
+  pnpm
   # NOTE: for vterm, but i'm not using vterm anymore for emacs
   cmake
   libtool
