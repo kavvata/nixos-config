@@ -47,6 +47,9 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    # TODO: remove after zotero updates their firefox
+    nixpkgs.config.permittedInsecurePackages = [ "firefox-esr-140-bin-unwrapped-140.17.0esr" ];
+
     virtualisation.docker.enable = true;
 
     environment.systemPackages = with pkgs; [
