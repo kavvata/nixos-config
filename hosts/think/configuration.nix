@@ -60,7 +60,6 @@
 
   local.extraPkgs = with pkgs; [
     gimp
-    zen-browser
   ];
 
   system.stateVersion = "25.11";

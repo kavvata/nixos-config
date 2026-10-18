@@ -17,6 +17,5 @@ pkgs: with pkgs; [
   gnome-obfuscate
   gnucash
   papers
-  zen-browser
   helium
 ]

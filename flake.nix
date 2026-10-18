@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +17,6 @@
     {
       self,
       nixpkgs,
-      zen-browser,
       helium,
       sops-nix,
       ...
@@ -39,7 +34,6 @@
             {
               nixpkgs.overlays = [
                 (final: prev: {
-                  zen-browser = zen-browser.packages.${prev.stdenv.hostPlatform.system}.default;
                   helium = helium.packages.${prev.stdenv.hostPlatform.system}.default;
                 })
               ];
