@@ -59,6 +59,7 @@
     # python314Packages.yt-dlp-ejs
     # deno
     gpu-screen-recorder
+    hermes-agent
   ];
 
   system.stateVersion = "25.11";
