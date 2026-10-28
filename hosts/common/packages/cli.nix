@@ -46,4 +46,5 @@ pkgs: with pkgs; [
   ocrmypdf
   pi-coding-agent
   herdr
+  nh
 ]
