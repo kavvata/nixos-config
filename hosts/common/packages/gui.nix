@@ -8,6 +8,7 @@ pkgs: with pkgs; [
   mpv
   libreoffice
   dconf-editor
+  amberol
   loupe
   obsidian
   sone
