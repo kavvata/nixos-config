@@ -49,4 +49,5 @@ pkgs: with pkgs; [
   nh
   pass
   gnupg
+  bitwarden-cli
 ]
