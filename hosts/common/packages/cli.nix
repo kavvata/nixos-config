@@ -47,4 +47,6 @@ pkgs: with pkgs; [
   pi-coding-agent
   herdr
   nh
+  pass
+  gnupg
 ]
