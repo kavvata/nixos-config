@@ -11,10 +11,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +25,6 @@
     {
       self,
       nixpkgs,
-      llm-agents,
       helium,
       sops-nix,
       ...
@@ -51,7 +46,6 @@
                   # Taken from llm-agents' own prebuilt package set (not their
                   # shared-nixpkgs overlay) so the store path matches what
                   # cache.numtide.com serves — substituting, not compiling.
-                  orca = llm-agents.packages.${prev.stdenv.hostPlatform.system}.orca;
                 })
               ];
             }
