@@ -1,14 +1,6 @@
 {
   description = "Nixos config flake";
 
-  nixConfig = {
-    # Prebuilt NARs for llm-agents.nix packages (their daily CI builds the
-    # full package set; nixConfig only applies to the root flake, so the
-    # substituters must be declared here for nixos-rebuild to substitute).
-    extra-substituters = [ "https://cache.numtide.com" ];
-    extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
-  };
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     helium = {
@@ -43,9 +35,6 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   helium = helium.packages.${prev.stdenv.hostPlatform.system}.default;
-                  # Taken from llm-agents' own prebuilt package set (not their
-                  # shared-nixpkgs overlay) so the store path matches what
-                  # cache.numtide.com serves — substituting, not compiling.
                 })
               ];
             }
