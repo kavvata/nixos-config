@@ -50,4 +50,5 @@ pkgs: with pkgs; [
   pass
   gnupg
   bitwarden-cli
+  gocryptfs
 ]
