@@ -1,0 +1,51 @@
+{
+  programs.foot = {
+    enable = true;
+
+    settings = {
+      main = {
+        font = "Iosevka Nerd Font:size=10";
+        pad = "3x3";
+        initial-window-size-pixels = "640x540";
+        resize-delay-ms = "0";
+      };
+
+      bell = {
+        urgent = "no";
+        system = "no";
+      };
+
+      key-bindings = {
+        font-increase = "Control+equal";
+        font-decrease = "Control+minus";
+        font-reset = "Control+0";
+      };
+
+      colors-dark = {
+        foreground = "c5c9c5";
+        background = "181616";
+
+        selection-foreground = "c8c093";
+        selection-background = "2d4f67";
+
+        regular0 = "0d0c0c";
+        regular1 = "c4746e";
+        regular2 = "8a9a7b";
+        regular3 = "c4b28a";
+        regular4 = "8ba4b0";
+        regular5 = "a292a3";
+        regular6 = "8ea4a2";
+        regular7 = "c8c093";
+
+        bright0 = "a6a69c";
+        bright1 = "e46876";
+        bright2 = "87a987";
+        bright3 = "e6c384";
+        bright4 = "7fb4ca";
+        bright5 = "938aa9";
+        bright6 = "7aa89f";
+        bright7 = "c5c9c5";
+      };
+    };
+  };
+}

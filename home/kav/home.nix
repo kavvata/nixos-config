@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./dotfiles/foot.nix
     ./dotfiles/kitty.nix
     ./dotfiles/tmux.nix
   ];
