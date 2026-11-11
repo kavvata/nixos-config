@@ -11,6 +11,7 @@
     ./dotfiles/lazygit.nix
     ./dotfiles/swaylock.nix
     ./dotfiles/tmux.nix
+    ./dotfiles/wofi.nix
   ];
 
   home = {
