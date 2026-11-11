@@ -1,0 +1,10 @@
+font=Iosevka Nerd Font 9
+background-color=@background@FF
+text-color=@foreground@
+default-timeout=6000
+border-size=1
+border-radius=0
+border-color=@foreground@
+
+[mode=do-not-disturb]
+invisible=1

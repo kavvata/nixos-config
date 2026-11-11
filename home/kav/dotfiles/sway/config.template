@@ -1,0 +1,31 @@
+# Read `man 5 sway` for a complete reference.
+
+
+# Gaps and border configuration:
+gaps inner 4
+gaps outer 0
+default_border pixel 1
+default_floating_border pixel 1
+client.unfocused        @background@ @background@ @background@ @background@     @background@
+client.focused          @foreground@ @foreground@ @foreground@ @foreground@     @foreground@
+client.urgent           #C4746E #C4746E #C4746E #C4746E     #C4746E
+client.focused_inactive @background@ @background@ @background@ @background@     @background@
+
+
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    swaybar_command /home/kav/.config/sway/swaybar
+}
+
+seat seat0 xcursor_theme Adwaita 24
+
+include /etc/sway/config.d/*
+
+include ./conf/autostart.conf
+include ./conf/binds.conf
+include ./conf/input.conf
+include ./conf/output.conf
+include ./conf/window-rules.conf
+include ./conf/swayfx.conf

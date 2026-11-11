@@ -1,0 +1,137 @@
+@define-color foreground @foreground@;
+@define-color background rgba(@background_rgba@, 0.9);
+@define-color comment @comment@;
+@define-color border @border@;
+@define-color accent @accent@;
+@define-color alt_accent @alt_accent@;
+@define-color warning @warning@;
+
+* {
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "Iosevka Nerd Font";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+window#waybar {
+  background-color: @background;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 3px 1.5px;
+  min-width: 9px;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#workspaces button.focused,
+#workspaces button.active,
+#workspaces button.focused label,
+#workspaces button.active label {
+  color: @accent;
+  font-weight: bold;
+}
+
+#cpu,
+#battery,
+#pulseaudio,
+#custom-appmenu,
+#idle_inhibitor,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#tray {
+  margin-right: 16px;
+}
+
+#bluetooth {
+  margin-right: 17px;
+}
+
+#network {
+  margin-right: 13px;
+}
+
+#custom-expand-icon {
+  margin-right: 18px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#clock {
+  margin-left: 8.75px;
+}
+
+#idle_inhibitor {
+  margin-right: 17px;
+}
+
+#idle_inhibitor.deactivated {
+  color: @comment;
+}
+
+#bluetooth.off {
+  color: @comment;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-notification-silencing-indicator {
+  color: @comment;
+  min-width: 12px;
+  margin-left: 5px;
+  margin-right: 0;
+  font-size: 10px;
+  padding-top: 1px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #c4746e;
+}
+
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #c4746e;
+}
+
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 7.5px;
+}
+
+#custom-voxtype.recording {
+  color: #c4746e;
+}
+
+#battery.charging.charged,
+#battery.full {
+  color: @alt_accent;
+}
+
+#battery.discharging.critical {
+  color: @warning;
+}
