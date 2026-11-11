@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -16,6 +16,8 @@
   ];
 
   networking.hostName = "bookling";
+
+  home-manager.users.${config.my.userName} = ../../home/kav/home.nix;
 
   syncthing.devices = {
     "iPhone" = {

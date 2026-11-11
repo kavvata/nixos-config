@@ -1,15 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "kav";
-  home.homeDirectory = "/home/kav";
-  home.stateVersion = "24.05";
+  home = {
+    username = "kav";
+    homeDirectory = "/home/kav";
+    stateVersion = "24.05";
 
-  home.packages = [ ];
+    packages = [ ];
 
-  home.file = { };
+    file = { };
 
-  home.sessionVariables = { };
+    sessionVariables = { };
+  };
 
   programs.home-manager.enable = true;
 }
