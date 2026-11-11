@@ -13,6 +13,7 @@
     ./dotfiles/ideavimrc.nix
     ./dotfiles/kitty.nix
     ./dotfiles/lazygit.nix
+    ./dotfiles/mako.nix
     ./dotfiles/swaylock.nix
     ./dotfiles/tmux.nix
     ./dotfiles/wofi.nix
