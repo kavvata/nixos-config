@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./dotfiles/bluetuith.nix
     ./dotfiles/foot.nix
     ./dotfiles/fuzzel.nix
     ./dotfiles/kitty.nix
