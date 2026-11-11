@@ -23,7 +23,7 @@
   home = {
     username = "kav";
     homeDirectory = "/home/kav";
-    stateVersion = "24.05";
+    stateVersion = "25.11";
 
     packages = [ ];
 
