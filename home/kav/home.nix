@@ -3,6 +3,7 @@
 {
   imports = [
     ./dotfiles/kitty.nix
+    ./dotfiles/tmux.nix
   ];
 
   home = {
