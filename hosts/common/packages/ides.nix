@@ -1,6 +1,6 @@
 pkgs: with pkgs; [
   bruno
-  vscode
+  zed-editor
   emacs
   dbeaver-bin
 ]
