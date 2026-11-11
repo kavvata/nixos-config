@@ -5,6 +5,7 @@
     ./dotfiles/foot.nix
     ./dotfiles/fuzzel.nix
     ./dotfiles/kitty.nix
+    ./dotfiles/lazygit.nix
     ./dotfiles/tmux.nix
   ];
 
