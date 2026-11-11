@@ -3,6 +3,7 @@
 {
   imports = [
     ./dotfiles/foot.nix
+    ./dotfiles/fuzzel.nix
     ./dotfiles/kitty.nix
     ./dotfiles/tmux.nix
   ];
