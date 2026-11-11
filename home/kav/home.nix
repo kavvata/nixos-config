@@ -8,6 +8,7 @@
     ./dotfiles/herdr.nix
     ./dotfiles/kitty.nix
     ./dotfiles/lazygit.nix
+    ./dotfiles/swaylock.nix
     ./dotfiles/tmux.nix
   ];
 
