@@ -6,8 +6,10 @@
     ./dotfiles/foot.nix
     ./dotfiles/fontconfig.nix
     ./dotfiles/fuzzel.nix
+    ./dotfiles/gowall.nix
     ./dotfiles/gtk.nix
     ./dotfiles/herdr.nix
+    ./dotfiles/ideavimrc.nix
     ./dotfiles/kitty.nix
     ./dotfiles/lazygit.nix
     ./dotfiles/swaylock.nix
