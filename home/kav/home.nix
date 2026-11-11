@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./dotfiles/kitty.nix
+  ];
+
   home = {
     username = "kav";
     homeDirectory = "/home/kav";
