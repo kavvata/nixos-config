@@ -9,6 +9,7 @@
     ./dotfiles/gowall.nix
     ./dotfiles/gtk.nix
     ./dotfiles/herdr.nix
+    ./dotfiles/hyprlock.nix
     ./dotfiles/ideavimrc.nix
     ./dotfiles/kitty.nix
     ./dotfiles/lazygit.nix
