@@ -4,6 +4,7 @@
   imports = [
     ./dotfiles/bluetuith.nix
     ./dotfiles/foot.nix
+    ./dotfiles/fontconfig.nix
     ./dotfiles/fuzzel.nix
     ./dotfiles/gtk.nix
     ./dotfiles/herdr.nix
