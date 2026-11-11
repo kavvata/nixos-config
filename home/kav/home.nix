@@ -17,6 +17,7 @@
     ./dotfiles/swaylock.nix
     ./dotfiles/tmux.nix
     ./dotfiles/wofi.nix
+    ./dotfiles/zathura.nix
   ];
 
   home = {
