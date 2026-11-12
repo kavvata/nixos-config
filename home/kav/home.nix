@@ -14,6 +14,7 @@
     ./dotfiles/kitty.nix
     ./dotfiles/lazygit.nix
     ./dotfiles/mako.nix
+    ./dotfiles/niri.nix
     ./dotfiles/swaylock.nix
     ./dotfiles/tmux.nix
     ./dotfiles/wofi.nix
