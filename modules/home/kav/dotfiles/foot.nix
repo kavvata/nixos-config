@@ -1,3 +1,6 @@
+let
+  scheme = (import ../colors.nix).colorscheme.colors;
+in
 {
   programs.foot = {
     enable = true;
@@ -22,29 +25,29 @@
       };
 
       colors-dark = {
-        foreground = "c5c9c5";
-        background = "181616";
+        inherit (scheme) foreground;
+        inherit (scheme) background;
 
-        selection-foreground = "c8c093";
-        selection-background = "2d4f67";
+        selection-foreground = scheme.foreground;
+        selection-background = scheme.selection_background;
 
-        regular0 = "0d0c0c";
-        regular1 = "c4746e";
-        regular2 = "8a9a7b";
-        regular3 = "c4b28a";
-        regular4 = "8ba4b0";
-        regular5 = "a292a3";
-        regular6 = "8ea4a2";
-        regular7 = "c8c093";
+        regular0 = scheme.color0;
+        regular1 = scheme.color1;
+        regular2 = scheme.color2;
+        regular3 = scheme.color3;
+        regular4 = scheme.color4;
+        regular5 = scheme.color5;
+        regular6 = scheme.color6;
+        regular7 = scheme.color7;
 
-        bright0 = "a6a69c";
-        bright1 = "e46876";
-        bright2 = "87a987";
-        bright3 = "e6c384";
-        bright4 = "7fb4ca";
-        bright5 = "938aa9";
-        bright6 = "7aa89f";
-        bright7 = "c5c9c5";
+        bright0 = scheme.color8;
+        bright1 = scheme.color9;
+        bright2 = scheme.color10;
+        bright3 = scheme.color11;
+        bright4 = scheme.color12;
+        bright5 = scheme.color13;
+        bright6 = scheme.color14;
+        bright7 = scheme.color14;
       };
     };
   };
