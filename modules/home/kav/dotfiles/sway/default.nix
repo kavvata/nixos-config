@@ -4,7 +4,7 @@ let
   config = import ./config.nix;
   layout = import ./layout.nix;
   autostart = import ./autostart.nix;
-  binds = import ./binds.nix;
+  binds = import ./binds.nix { inherit pkgs; };
   input = import ./input.nix;
   output = import ./output.nix;
   colors = import ./colors.nix;
@@ -42,7 +42,7 @@ in
 
     package = pkgs.swayfx.override { withGtkWrapper = true; };
 
-    # checkPhase runs sway under xvfb, where swayfx's fx_renderer cannot
+    # NOTE: checkPhase runs sway under xvfb, where swayfx's fx_renderer cannot
     # create a renderer ("no DRM FD available") regardless of the config's
     # correctness; verified live in a real session instead.
     checkConfig = false;

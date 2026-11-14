@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 let
   mod = "Mod4";
   terminal = "kitty";
@@ -101,12 +103,9 @@ in
     };
   };
 
-  # `--whole-window` and `bindgesture` have no module option.
-  raw =
-    "bindsym --whole-window ${mod}+button8 workspace prev\n"
-    + "bindsym --whole-window ${mod}+button9 workspace next\n"
-    + "\n"
-    + "bindgesture swipe:right workspace prev\n"
-    + "bindgesture swipe:left workspace next\n"
-    + "bindgesture swipe:up exec vicinae toggle\n";
+  raw = builtins.readFile (
+    pkgs.replaceVars ./conf/extrabinds.conf {
+      inherit mod;
+    }
+  );
 }
