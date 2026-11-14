@@ -3,16 +3,16 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../common/core.nix
-    ../common/users.nix
-    ../common/networking.nix
-    ../common/services.nix
-    ../common/programs.nix
-    ../common/user_packages.nix
-    ../common/syncthing.nix
-    ../common/windowManagers/niri.nix
-    ../common/windowManagers/sway.nix
-    ../common/greetd.nix
+    ../../modules/core.nix
+    ../../modules/users.nix
+    ../../modules/networking.nix
+    ../../modules/services.nix
+    ../../modules/programs.nix
+    ../../modules/user_packages.nix
+    ../../modules/syncthing.nix
+    ../../modules/windowManagers/niri.nix
+    ../../modules/windowManagers/sway.nix
+    ../../modules/greetd.nix
   ];
 
   networking.hostName = "bookling";
