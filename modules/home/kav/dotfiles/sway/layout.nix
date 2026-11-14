@@ -24,12 +24,11 @@
       };
 
       colors = {
-        # sway's built-in default; the module's (#ffffff) would change it
         background = "#000000";
         unfocused = mkColorSet colors.background;
         focused = mkColorSet colors.foreground;
         focusedInactive = mkColorSet colors.background;
-        urgent = mkColorSet "#C4746E";
+        urgent = mkColorSet colors.warning;
       };
     };
 
