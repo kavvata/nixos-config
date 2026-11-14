@@ -1,14 +1,14 @@
 { pkgs, lib, ... }:
 
 let
-  config = import ./sway/config.nix;
-  layout = import ./sway/layout.nix;
-  autostart = import ./sway/autostart.nix;
-  binds = import ./sway/binds.nix;
-  input = import ./sway/input.nix;
-  output = import ./sway/output.nix;
-  windowRules = import ./sway/window-rules.nix;
-  swayfx = import ./sway/swayfx.nix;
+  config = import ./config.nix;
+  layout = import ./layout.nix;
+  autostart = import ./autostart.nix;
+  binds = import ./binds.nix;
+  input = import ./input.nix;
+  output = import ./output.nix;
+  windowRules = import ./window-rules.nix;
+  swayfx = import ./swayfx.nix;
 
   # Top-level keys are unique per fragment, so merging with `//` is safe.
   swayConfig =

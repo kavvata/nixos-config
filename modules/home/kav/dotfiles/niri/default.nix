@@ -1,14 +1,14 @@
 { pkgs, lib, ... }:
 
 let
-  config = import ./niri/config.nix;
-  input = import ./niri/input.nix;
-  output = import ./niri/output.nix;
-  layout = import ./niri/layout.nix;
-  windowRules = import ./niri/window-rules.nix;
-  animations = import ./niri/animations.nix;
-  binds = import ./niri/binds.nix;
-  autostart = import ./niri/autostart.nix;
+  config = import ./config.nix;
+  input = import ./input.nix;
+  output = import ./output.nix;
+  layout = import ./layout.nix;
+  windowRules = import ./window-rules.nix;
+  animations = import ./animations.nix;
+  binds = import ./binds.nix;
+  autostart = import ./autostart.nix;
 
   # Order of repeated top-level nodes, mirroring the old config.kdl include
   # order (output, layout, window-rules, autostart).

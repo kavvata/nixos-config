@@ -4,22 +4,22 @@
   imports = [
     ./dotfiles/bluetuith.nix
     ./dotfiles/foot.nix
-    ./dotfiles/fontconfig.nix
+    ./dotfiles/fontconfig
     ./dotfiles/fuzzel.nix
-    ./dotfiles/gowall.nix
+    ./dotfiles/gowall
     ./dotfiles/gtk.nix
     ./dotfiles/herdr.nix
     ./dotfiles/hyprlock.nix
-    ./dotfiles/ideavimrc.nix
+    ./dotfiles/ideavimrc
     ./dotfiles/kitty.nix
     ./dotfiles/lazygit.nix
-    ./dotfiles/mako.nix
-    ./dotfiles/niri.nix
-    ./dotfiles/sway.nix
+    ./dotfiles/mako
+    ./dotfiles/niri
+    ./dotfiles/sway
     ./dotfiles/swaylock.nix
-    ./dotfiles/tmux.nix
-    ./dotfiles/wofi.nix
-    ./dotfiles/zathura.nix
+    ./dotfiles/tmux
+    ./dotfiles/wofi
+    ./dotfiles/zathura
   ];
 
   home = {

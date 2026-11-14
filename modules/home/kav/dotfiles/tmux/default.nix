@@ -22,6 +22,6 @@
       pkgs.tmuxPlugins.resurrect
     ];
 
-    extraConfig = builtins.readFile ./tmux/tmux.conf;
+    extraConfig = builtins.readFile ./tmux.conf;
   };
 }

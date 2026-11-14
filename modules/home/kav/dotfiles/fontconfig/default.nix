@@ -4,5 +4,5 @@
 # The per-user config file is ~/.config/fontconfig/fonts.conf, so it is
 # managed as a verbatim file.
 {
-  home.file."config/fontconfig/fonts.conf".source = ./fontconfig/fonts.conf;
+  home.file."config/fontconfig/fonts.conf".source = ./fonts.conf;
 }
