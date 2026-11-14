@@ -21,11 +21,6 @@ let
     // windowRules.config
     // swayfx.config;
 
-  # Raw sway text, concatenated in the old include order (config,
-  # autostart, binds, input, output, window-rules, swayfx); layout carries
-  # no raw text. Nix strips the first newline of each indented string, so
-  # the separator restores the blank line between sections; each raw ends
-  # with a newline.
   extraConfig = lib.concatStringsSep "\n" (
     lib.remove "" [
       config.raw
@@ -43,9 +38,6 @@ in
   wayland.windowManager.sway = {
     enable = true;
 
-    # The system config installs swayfx with the gtk wrapper; the module
-    # needs its own package for build-time validation and `swaymsg reload`
-    # on config change.
     package = pkgs.swayfx.override { withGtkWrapper = true; };
 
     # checkPhase runs sway under xvfb, where swayfx's fx_renderer cannot
