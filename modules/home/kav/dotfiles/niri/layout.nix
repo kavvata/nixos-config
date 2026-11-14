@@ -1,9 +1,5 @@
-let
-  colors = (import ../../colors.nix).colorscheme.colors;
-in
 {
   overview = {
-    "backdrop-color" = colors.background;
     "workspace-shadow" = {
       off = { };
     };
@@ -12,7 +8,6 @@ in
 
   layout = {
     gaps = 4;
-    "background-color" = "transparent";
     "center-focused-column" = "on-overflow";
 
     # Order matters: these presets are indexed.
@@ -29,16 +24,11 @@ in
     focus-ring = {
       off = { };
       width = 1;
-      "active-color" = colors.foreground;
-      "inactive-color" = colors.background;
-      "urgent-color" = "#C4746E";
     };
 
     border = {
       on = { };
       width = 1;
-      "active-color" = colors.foreground;
-      "urgent-color" = "#C4746E";
     };
 
     shadow = {
@@ -49,7 +39,6 @@ in
         x = 0;
         y = 5;
       };
-      color = "#0007";
     };
 
     struts = { };

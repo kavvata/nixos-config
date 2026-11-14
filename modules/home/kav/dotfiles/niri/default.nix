@@ -5,13 +5,12 @@ let
   input = import ./input.nix;
   output = import ./output.nix;
   layout = import ./layout.nix;
+  colors = import ./colors.nix;
   windowRules = import ./window-rules.nix;
   animations = import ./animations.nix;
   binds = import ./binds.nix;
   autostart = import ./autostart.nix;
 
-  # Order of repeated top-level nodes, mirroring the old config.kdl include
-  # order (output, layout, window-rules, autostart).
   orderedChildren = lib.flatten [
     output._children
     layout._children
@@ -28,11 +27,10 @@ in
     # at build time; the system config already provides the runtime package.
     package = pkgs.niri;
 
-    # Top-level keys are unique per fragment, so `//` merges are safe.
     settings =
       config
       // input
-      // (removeAttrs layout [ "_children" ])
+      // (lib.recursiveUpdate (removeAttrs layout [ "_children" ]) colors)
       // (removeAttrs autostart [ "_children" ])
       // animations
       // binds
