@@ -1,0 +1,20 @@
+{
+  config = { };
+
+  # swayfx-only directives, verbatim from conf/swayfx.conf.
+  raw = ''
+    ### swayfx options
+    corner_radius 4
+    shadows enable
+    default_dim_inactive 0.05
+
+    blur_passes 2
+    blur_brightness 0.90
+    blur enable
+
+    layer_effects "vicinae" 'blur enable;'
+    layer_effects "waybar" 'blur enable;'
+    # layer_effects "fuzzel" 'blur enable;'
+    # layer_effects "rofi" 'blur enable;'
+  '';
+}
