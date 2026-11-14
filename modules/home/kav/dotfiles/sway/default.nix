@@ -7,20 +7,21 @@ let
   binds = import ./binds.nix;
   input = import ./input.nix;
   output = import ./output.nix;
+  colors = import ./colors.nix;
   windowRules = import ./window-rules.nix;
   swayfx = import ./swayfx.nix;
 
-  # Top-level keys are unique per fragment, so merging with `//` is safe.
   swayConfig =
     config.config
     // layout.config
     // autostart.config
     // binds.config
     // input.config
-    // output.config
+    // (lib.recursiveUpdate output.config colors.config)
     // windowRules.config
     // swayfx.config;
 
+  # NOTE: raw string configuration not available as options
   extraConfig = lib.concatStringsSep "\n" (
     lib.remove "" [
       config.raw
@@ -29,6 +30,7 @@ let
       binds.raw
       input.raw
       output.raw
+      colors.raw
       windowRules.raw
       swayfx.raw
     ]
