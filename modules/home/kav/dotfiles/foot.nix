@@ -1,5 +1,9 @@
+{ lib, ... }:
 let
-  scheme = (import ../colors.nix).colorscheme.colors;
+  # NOTE: foot uses hex color codes without the `#` prefix
+  scheme =
+    lib.mapAttrs (_: value: lib.removePrefix "#" value)
+      (import ../colors.nix).colorscheme.colors;
 in
 {
   programs.foot = {
