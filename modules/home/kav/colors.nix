@@ -3,7 +3,7 @@
 let
   # Available colorschemes. Add new ones here.
   schemes = {
-    one_dark = {
+    oneDark = {
       foreground = "#979eab";
       foreground_rgba = "151, 158, 171";
       background = "#282c34";
@@ -40,7 +40,7 @@ in
 {
   options.kav.colorscheme = lib.mkOption {
     type = lib.types.enum (lib.attrNames schemes);
-    default = "one_dark";
+    default = "oneDark";
   };
 
   options.colorscheme = lib.mkOption {
