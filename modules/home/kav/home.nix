@@ -29,7 +29,7 @@
   ];
 
   # Active colorscheme for the dotfiles (available: see ./colors.nix)
-  kav.colorscheme = lib.mkDefault "oneDark";
+  kav.colorscheme = lib.mkDefault "oneLight";
 
   home = {
     username = "kav";

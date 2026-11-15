@@ -29,7 +29,7 @@
 
     autoThemeFiles = {
       dark = "OneDark";
-      light = "OneLight";
+      light = "AtomOneLight";
       noPreference = "OneDark";
     };
   };
