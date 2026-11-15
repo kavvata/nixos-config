@@ -49,7 +49,7 @@ in
         bright4 = scheme.color12;
         bright5 = scheme.color13;
         bright6 = scheme.color14;
-        bright7 = scheme.color14;
+        bright7 = scheme.color15;
       };
     };
   };
