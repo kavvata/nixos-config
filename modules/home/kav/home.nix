@@ -1,7 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
+    ./colors.nix
     ./dotfiles/bluetuith.nix
     ./dotfiles/foot.nix
     ./dotfiles/fontconfig
@@ -21,6 +27,9 @@
     ./dotfiles/wofi
     ./dotfiles/zathura
   ];
+
+  # Active colorscheme for the dotfiles (available: see ./colors.nix)
+  kav.colorscheme = lib.mkDefault "one_dark";
 
   home = {
     username = "kav";

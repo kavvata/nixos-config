@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, ... }@args:
 
 let
   config = import ./config.nix;
@@ -7,7 +7,7 @@ let
   binds = import ./binds.nix { inherit pkgs; };
   input = import ./input.nix;
   output = import ./output.nix;
-  colors = import ./colors.nix;
+  colors = import ./colors.nix args.config.colorscheme;
   windowRules = import ./window-rules.nix;
   swayfx = import ./swayfx.nix;
 

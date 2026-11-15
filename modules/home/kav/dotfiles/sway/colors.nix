@@ -1,6 +1,5 @@
+scheme:
 let
-  scheme = (import ../../colors.nix).colorscheme.colors;
-
   mkColorSet = c: {
     border = c;
     background = c;

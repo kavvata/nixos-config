@@ -1,5 +1,7 @@
+{ config, ... }:
+
 let
-  colors = (import ../colors.nix).colorscheme.colors;
+  colors = config.colorscheme;
 in
 {
   programs.hyprlock = {

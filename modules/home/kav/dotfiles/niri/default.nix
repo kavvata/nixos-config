@@ -1,11 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, ... }@args:
 
 let
   config = import ./config.nix;
   input = import ./input.nix;
   output = import ./output.nix;
   layout = import ./layout.nix;
-  colors = import ./colors.nix;
+  colors = import ./colors.nix args.config.colorscheme;
   windowRules = import ./window-rules.nix;
   animations = import ./animations.nix;
   binds = import ./binds.nix;

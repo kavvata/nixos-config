@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
-  colors = (import ../../colors.nix).colorscheme.colors;
+  colors = config.colorscheme;
 in
 {
   home.file = {

@@ -1,7 +1,4 @@
-let
-  # Shared colorscheme (modules/home/kav/colors.nix)
-  scheme = (import ../../colors.nix).colorscheme.colors;
-in
+scheme:
 # All color values of the niri config; the surrounding structural keys
 # live in layout.nix and are merged recursively in default.nix.
 {

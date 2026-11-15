@@ -1,7 +1,9 @@
-{
-  colorscheme = {
-    name = "one_dark";
-    colors = {
+{ config, lib, ... }:
+
+let
+  # Available colorschemes. Add new ones here.
+  schemes = {
+    one_dark = {
       foreground = "#979eab";
       foreground_rgba = "151, 158, 171";
       background = "#282c34";
@@ -34,4 +36,20 @@
       color15 = "#abb2bf";
     };
   };
+in
+{
+  options.kav.colorscheme = lib.mkOption {
+    type = lib.types.enum (lib.attrNames schemes);
+    default = "one_dark";
+  };
+
+  options.colorscheme = lib.mkOption {
+    type = lib.types.attrs;
+    readOnly = true;
+    description = "The active colorscheme; set kav.colorscheme instead.";
+  };
+
+  # The active colorscheme; dotfiles modules read this instead of
+  # importing this file directly.
+  config.colorscheme = schemes.${config.kav.colorscheme};
 }
