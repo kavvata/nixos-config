@@ -35,6 +35,39 @@ let
       color14 = "#56b6c2";
       color15 = "#abb2bf";
     };
+
+    oneLight = {
+      foreground = "#2a2b33";
+      foreground_rgba = "42, 43, 51";
+      background = "#f8f8f8";
+      background_rgba = "248, 248, 248";
+      comment = "#bbbbbb"; # guessed: dump has no comment color
+      border = "#bbbbbb"; # guessed: dump has no border color
+      accent = "#3e953a"; # guessed: oneDark's accent is green
+      alt_accent = "#3e953a"; # guessed: oneDark's alt_accent equals accent
+      warning = "#de3d35"; # guessed: oneDark's warning is red
+      warning_rgba = "222, 61, 53";
+      red = "#de3d35"; # guessed: oneDark has a second, darker red
+      red_rgba = "222, 61, 53";
+      selection_background = "#e5e5e6";
+      selection_background_rgba = "229, 229, 230";
+      color0 = "#000000";
+      color1 = "#de3d35";
+      color2 = "#3e953a";
+      color3 = "#d2b67b";
+      color4 = "#2f5af3";
+      color5 = "#950095";
+      color6 = "#3e953a";
+      color7 = "#bbbbbb";
+      color8 = "#000000";
+      color9 = "#de3d35";
+      color10 = "#3e953a";
+      color11 = "#d2b67b";
+      color12 = "#2f5af3";
+      color13 = "#a00095";
+      color14 = "#3e953a";
+      color15 = "#ffffff";
+    };
   };
 in
 {
