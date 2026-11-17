@@ -47,7 +47,7 @@ let
     oneLight = {
       kittyThemes = {
         dark = "OneDark";
-        light = "AtomOneLight";
+        light = "Doom_One_Light";
         noPreference = "OneDark";
       };
       herdrTheme = "one-light";
