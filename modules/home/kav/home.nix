@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -26,6 +24,7 @@
     ./dotfiles/tmux
     ./dotfiles/wofi
     ./dotfiles/zathura
+    ./dotfiles/waybar
   ];
 
   # Active colorscheme for the dotfiles (available: see ./colors.nix)
