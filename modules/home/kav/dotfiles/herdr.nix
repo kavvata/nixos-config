@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  herdrTheme = config.colorscheme.herdrTheme;
+in
 {
   programs.herdr = {
     enable = true;
@@ -6,7 +10,7 @@
       onboarding = false;
 
       theme = {
-        name = "one-dark";
+        name = herdrTheme;
         auto_switch = false;
       };
 

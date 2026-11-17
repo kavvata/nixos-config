@@ -9,6 +9,7 @@ let
         light = "AtomOneLight";
         noPreference = "OneDark";
       };
+      herdrTheme = "one-dark";
       colors = {
         foreground = "#979eab";
         foreground_rgba = "151, 158, 171";
@@ -49,6 +50,7 @@ let
         light = "AtomOneLight";
         noPreference = "OneDark";
       };
+      herdrTheme = "one-light";
       colors = {
         foreground = "#2a2b33";
         foreground_rgba = "42, 43, 51";
@@ -89,6 +91,7 @@ let
         light = "Solarized_Light";
         noPreference = "OneDark";
       };
+      herdrTheme = "solarized-light";
       colors = {
         foreground = "#657b83";
         foreground_rgba = "101, 123, 131";
