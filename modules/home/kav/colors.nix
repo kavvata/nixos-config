@@ -4,6 +4,11 @@ let
   # Available colorschemes. Add new ones here.
   schemes = {
     oneDark = {
+      kittyThemes = {
+        dark = "OneDark";
+        light = "AtomOneLight";
+        noPreference = "OneDark";
+      };
       colors = {
         foreground = "#979eab";
         foreground_rgba = "151, 158, 171";
@@ -39,6 +44,11 @@ let
     };
 
     oneLight = {
+      kittyThemes = {
+        dark = "OneDark";
+        light = "AtomOneLight";
+        noPreference = "OneDark";
+      };
       colors = {
         foreground = "#2a2b33";
         foreground_rgba = "42, 43, 51";
@@ -74,6 +84,11 @@ let
     };
 
     solarizedLight = {
+      kittyThemes = {
+        dark = "OneDark";
+        light = "Solarized_Light";
+        noPreference = "OneDark";
+      };
       colors = {
         foreground = "#657b83";
         foreground_rgba = "101, 123, 131";

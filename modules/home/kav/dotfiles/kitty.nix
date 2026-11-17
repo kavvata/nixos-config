@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  kittySchemes = config.colorscheme.kittyThemes;
+in
 {
   programs.kitty = {
     enable = true;
@@ -28,9 +32,7 @@
     };
 
     autoThemeFiles = {
-      dark = "OneDark";
-      light = "AtomOneLight";
-      noPreference = "OneDark";
+      inherit (kittySchemes) dark light noPreference;
     };
   };
 }
