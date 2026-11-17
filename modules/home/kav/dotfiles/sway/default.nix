@@ -7,7 +7,7 @@ let
   binds = import ./binds.nix { inherit pkgs; };
   input = import ./input.nix;
   output = import ./output.nix;
-  colors = import ./colors.nix args.config.colorscheme;
+  colors = import ./colors.nix args.config.colorscheme.colors;
   windowRules = import ./window-rules.nix;
   swayfx = import ./swayfx.nix;
 

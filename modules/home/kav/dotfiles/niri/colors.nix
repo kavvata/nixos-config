@@ -1,22 +1,22 @@
-scheme:
+colors:
 # All color values of the niri config; the surrounding structural keys
 # live in layout.nix and are merged recursively in default.nix.
 {
   overview = {
-    "backdrop-color" = scheme.background;
+    "backdrop-color" = colors.background;
   };
 
   layout = {
     "background-color" = "transparent";
 
     focus-ring = {
-      "active-color" = scheme.foreground;
-      "inactive-color" = scheme.background;
+      "active-color" = colors.foreground;
+      "inactive-color" = colors.background;
       "urgent-color" = "#C4746E"; # hardcoded, not from the scheme
     };
 
     border = {
-      "active-color" = scheme.foreground;
+      "active-color" = colors.foreground;
       "urgent-color" = "#C4746E"; # hardcoded, not from the scheme
     };
 

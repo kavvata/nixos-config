@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   # NOTE: foot uses hex color codes without the `#` prefix
-  scheme = lib.mapAttrs (_: value: lib.removePrefix "#" value) config.colorscheme;
+  colors = lib.mapAttrs (_: value: lib.removePrefix "#" value) config.colorscheme.colors;
 in
 {
   programs.foot = {
@@ -27,29 +27,29 @@ in
       };
 
       colors-dark = {
-        inherit (scheme) foreground;
-        inherit (scheme) background;
+        inherit (colors) foreground;
+        inherit (colors) background;
 
-        selection-foreground = scheme.foreground;
-        selection-background = scheme.selection_background;
+        selection-foreground = colors.foreground;
+        selection-background = colors.selection_background;
 
-        regular0 = scheme.color0;
-        regular1 = scheme.color1;
-        regular2 = scheme.color2;
-        regular3 = scheme.color3;
-        regular4 = scheme.color4;
-        regular5 = scheme.color5;
-        regular6 = scheme.color6;
-        regular7 = scheme.color7;
+        regular0 = colors.color0;
+        regular1 = colors.color1;
+        regular2 = colors.color2;
+        regular3 = colors.color3;
+        regular4 = colors.color4;
+        regular5 = colors.color5;
+        regular6 = colors.color6;
+        regular7 = colors.color7;
 
-        bright0 = scheme.color8;
-        bright1 = scheme.color9;
-        bright2 = scheme.color10;
-        bright3 = scheme.color11;
-        bright4 = scheme.color12;
-        bright5 = scheme.color13;
-        bright6 = scheme.color14;
-        bright7 = scheme.color15;
+        bright0 = colors.color8;
+        bright1 = colors.color9;
+        bright2 = colors.color10;
+        bright3 = colors.color11;
+        bright4 = colors.color12;
+        bright5 = colors.color13;
+        bright6 = colors.color14;
+        bright7 = colors.color15;
       };
     };
   };

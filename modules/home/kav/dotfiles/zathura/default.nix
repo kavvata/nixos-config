@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  colors = config.colorscheme;
+  colors = config.colorscheme.colors;
 in
 {
   home.file.".config/zathura/zathurarc".source = pkgs.replaceVars ./zathurarc.template {
