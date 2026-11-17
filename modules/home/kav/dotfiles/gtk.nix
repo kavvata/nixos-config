@@ -1,6 +1,8 @@
 {
   gtk.gtk3 = {
     cursorTheme.name = "Adwaita";
-    colorScheme = "light";
+    extraConfig = {
+      "gtk-application-prefer-dark-theme" = 1;
+    };
   };
 }
