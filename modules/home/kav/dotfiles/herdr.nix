@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  herdrTheme = config.colorscheme.herdrTheme;
+  herdrTheme = config.colorschemeResolved.herdrTheme;
 in
 {
   programs.herdr = {

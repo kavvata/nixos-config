@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   # NOTE: foot uses hex color codes without the `#` prefix
-  colors = lib.mapAttrs (_: value: lib.removePrefix "#" value) config.colorscheme.colors;
+  colors = lib.mapAttrs (_: value: lib.removePrefix "#" value) config.colorschemeResolved.colors;
 in
 {
   programs.foot = {

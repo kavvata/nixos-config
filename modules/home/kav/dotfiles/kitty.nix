@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  kittySchemes = config.colorscheme.kittyThemes;
+  kittySchemes = config.colorschemeResolved.kittyThemes;
 in
 {
   programs.kitty = {

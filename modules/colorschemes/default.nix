@@ -9,18 +9,19 @@ let
   };
 in
 {
-  options.kav.colorscheme = lib.mkOption {
+  options.colorscheme = lib.mkOption {
     type = lib.types.enum (lib.attrNames schemes);
     default = "oneDark";
+    description = "The active colorscheme for the dotfiles.";
   };
 
-  options.colorscheme = lib.mkOption {
+  # The resolved colorscheme; dotfiles modules read this instead of
+  # importing the schemes directly.
+  options.colorschemeResolved = lib.mkOption {
     type = lib.types.attrs;
     readOnly = true;
-    description = "The active colorscheme; set kav.colorscheme instead.";
+    description = "The resolved colorscheme; set colorscheme instead.";
   };
 
-  # The active colorscheme; dotfiles modules read this instead of
-  # importing this file directly.
-  config.colorscheme = schemes.${config.kav.colorscheme};
+  config.colorschemeResolved = schemes.${config.colorscheme};
 }

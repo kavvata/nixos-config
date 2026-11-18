@@ -5,7 +5,7 @@ let
   input = import ./input.nix;
   output = import ./output.nix;
   layout = import ./layout.nix;
-  colors = import ./colors.nix args.config.colorscheme.colors;
+  colors = import ./colors.nix args.config.colorschemeResolved.colors;
   windowRules = import ./window-rules.nix;
   animations = import ./animations.nix;
   binds = import ./binds.nix;

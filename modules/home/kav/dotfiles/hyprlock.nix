@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  colors = config.colorscheme.colors;
+  colors = config.colorschemeResolved.colors;
 in
 {
   programs.hyprlock = {

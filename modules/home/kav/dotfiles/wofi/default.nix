@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  colors = config.colorscheme.colors;
+  colors = config.colorschemeResolved.colors;
 in
 {
   home.file = {
