@@ -6,6 +6,7 @@ let
     oneDark = import ./schemes/oneDark.nix;
     oneLight = import ./schemes/oneLight.nix;
     solarizedLight = import ./schemes/solarizedLight.nix;
+    modusOperandi = import ./schemes/modusOperandi.nix;
   };
 in
 {
