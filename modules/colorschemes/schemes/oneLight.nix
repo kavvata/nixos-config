@@ -6,35 +6,43 @@
   };
   herdrTheme = "one-light";
   colors = {
-    foreground = "#2a2b33";
-    foreground_rgba = "42, 43, 51";
-    background = "#f8f8f8";
-    background_rgba = "248, 248, 248";
-    comment = "#bbbbbb";
-    border = "#bbbbbb";
-    accent = "#3e953a";
-    alt_accent = "#3e953a";
-    warning = "#de3d35";
-    warning_rgba = "222, 61, 53";
-    red = "#de3d35";
-    red_rgba = "222, 61, 53";
-    selection_background = "#e5e5e6";
-    selection_background_rgba = "229, 229, 230";
-    color0 = "#000000";
-    color1 = "#de3d35";
-    color2 = "#3e953a";
-    color3 = "#d2b67b";
-    color4 = "#2f5af3";
-    color5 = "#950095";
-    color6 = "#3e953a";
-    color7 = "#bbbbbb";
-    color8 = "#000000";
-    color9 = "#de3d35";
-    color10 = "#3e953a";
-    color11 = "#d2b67b";
-    color12 = "#2f5af3";
-    color13 = "#a00095";
-    color14 = "#3e953a";
-    color15 = "#ffffff";
+    foreground = "#383a42";
+    foreground_rgba = "56, 58, 66";
+
+    background = "#fafafa";
+    background_rgba = "250, 250, 250";
+
+    comment = "#c6c7c7";
+    border = "#c6c7c7";
+
+    accent = "#0184bc";
+    alt_accent = "#50a14f";
+
+    warning = "#e45649";
+    warning_rgba = "228, 86, 73";
+
+    red = "#e45649";
+    red_rgba = "228, 86, 73";
+
+    selection_background = "#dfdfdf";
+    selection_background_rgba = "223, 223, 223";
+
+    color0 = "#383a42";
+    color1 = "#e45649";
+    color2 = "#50a14f";
+    color3 = "#986801";
+    color4 = "#4078f2";
+    color5 = "#a626a4";
+    color6 = "#005478";
+    color7 = "#f0f0f0";
+
+    color8 = "#c6c7c7";
+    color9 = "#e45649";
+    color10 = "#50a14f";
+    color11 = "#986801";
+    color12 = "#4078f2";
+    color13 = "#b751b6";
+    color14 = "#0184bc";
+    color15 = "#383a42";
   };
 }
