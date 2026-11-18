@@ -73,8 +73,10 @@ window#waybar {
 }
 
 tooltip {
+  background-color: @background;
   padding: 2px;
 }
+
 
 #custom-update {
   font-size: 10px;
