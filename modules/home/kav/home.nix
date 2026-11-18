@@ -5,7 +5,7 @@
 
 {
   imports = [
-    ./colors.nix
+    ../../colorschemes
     ./dotfiles/bluetuith.nix
     ./dotfiles/foot.nix
     ./dotfiles/fontconfig
@@ -27,7 +27,7 @@
     ./dotfiles/waybar
   ];
 
-  # Active colorscheme for the dotfiles (available: see ./colors.nix)
+  # Active colorscheme for the dotfiles (available: see ../../colorschemes)
   kav.colorscheme = lib.mkDefault "oneLight";
 
   home = {
