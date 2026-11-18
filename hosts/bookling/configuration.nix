@@ -17,7 +17,10 @@
 
   networking.hostName = "bookling";
 
-  home-manager.users.${config.my.userName} = ../../modules/home/kav/home.nix;
+  home-manager.users.${config.my.userName} = { ... }: {
+    imports = [ ../../modules/home/kav/home.nix ];
+    colorscheme = "oneLight";
+  };
 
   syncthing.devices = {
     "iPhone" = {
