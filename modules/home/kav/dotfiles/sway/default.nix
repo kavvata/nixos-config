@@ -40,8 +40,6 @@ in
   wayland.windowManager.sway = {
     enable = true;
 
-    package = pkgs.swayfx.override { withGtkWrapper = true; };
-
     # NOTE: checkPhase runs sway under xvfb, where swayfx's fx_renderer cannot
     # create a renderer ("no DRM FD available") regardless of the config's
     # correctness; verified live in a real session instead.
