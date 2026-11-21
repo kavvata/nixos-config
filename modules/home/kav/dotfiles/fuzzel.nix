@@ -1,3 +1,8 @@
+{ config, ... }:
+
+let
+  colors = config.colorschemeResolved.colors;
+in
 {
   programs.fuzzel = {
     enable = true;
@@ -18,18 +23,18 @@
       };
 
       colors = {
-        background = "191919dd";
-        text = "DCD7BAff";
-        match = "#E46876ff";
-        selection = "2A2A37dd";
-        selection-text = "DCD7BAff";
-        selection-match = "#E46876ff";
-        border = "BBBBBBdd";
+        background = "${colors.background}dd";
+        text = colors.foreground;
+        match = colors.accent;
+        selection = "${colors.selection_background}dd";
+        selection-text = colors.foreground;
+        selection-match = colors.accent;
+        border = "${colors.border}dd";
       };
 
       border = {
         width = 1;
-        radius = 4;
+        radius = 0;
       };
 
     };

@@ -10,7 +10,7 @@ in
     focus.mouseWarping = "container";
 
     keybindings = {
-      "Mod1+space" = "exec vicinae toggle";
+      "Mod1+space" = "exec fuzzel";
       "${mod}+0" = "workspace number 10";
       "${mod}+1" = "workspace number 1";
       "${mod}+2" = "workspace number 2";
@@ -57,10 +57,10 @@ in
       "${mod}+Shift+v" = "splitv";
       "${mod}+Shift+w" = "exec ~/.config/kav-scripts/wallpaper-picker.sh";
       "${mod}+Shift+y" = "exec /home/kav/.config/kav-scripts/ocr-copy-text.sh";
-      "${mod}+Tab" = "exec vicinae deeplink vicinae://launch/wm/switch-windows";
+      # "${mod}+Tab" = "exec vicinae deeplink vicinae://launch/wm/switch-windows";
       "${mod}+Up" = "focus up";
       "${mod}+a" = "focus parent";
-      "${mod}+d" = "exec vicinae toggle";
+      # "${mod}+d" = "exec vicinae toggle";
       "${mod}+e" = "exec ${terminal} -e yazi";
       "${mod}+f" = "fullscreen";
       "${mod}+h" = "focus left";
@@ -70,13 +70,13 @@ in
       "${mod}+l" = "focus right";
       "${mod}+m" = "exec /home/kav/.config/kav-scripts/power-menu.sh";
       "${mod}+minus" = "scratchpad show";
-      "${mod}+n" = "exec vicinae deeplink vicinae://launch/core/search-emojis";
+      # "${mod}+n" = "exec vicinae deeplink vicinae://launch/core/search-emojis";
       "${mod}+q" = "kill";
       "${mod}+r" = "mode \"resize\"";
       "${mod}+s" =
         "exec scr_path=~/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') && grim $scr_path && cat $scr_path | wl-copy && notify-send -t 3000 \"📷 Screenshot Taken\".";
       "${mod}+u" = "workspace prev";
-      "${mod}+v" = "exec vicinae deeplink vicinae://launch/clipboard/history";
+      # "${mod}+v" = "exec vicinae deeplink vicinae://launch/clipboard/history";
 
       # Keys the module can't express natively stay in the raw block.
       "XF86AudioLowerVolume" = "exec pamixer -d 5 && pkill -RTMIN+1 i3blocks";

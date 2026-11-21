@@ -14,7 +14,7 @@ in
     settings = {
       window_padding_width = 3;
       enable_audio_bell = false;
-      background_opacity = 0.9;
+      background_opacity = 1;
       resize_debounce_time = 0;
       update_check_interval = 0;
       remember_window_size = false;

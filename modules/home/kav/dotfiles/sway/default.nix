@@ -9,7 +9,6 @@ let
   output = import ./output.nix;
   colors = import ./colors.nix args.config.colorschemeResolved.colors;
   windowRules = import ./window-rules.nix;
-  swayfx = import ./swayfx.nix;
 
   swayConfig =
     config.config
@@ -18,8 +17,7 @@ let
     // binds.config
     // input.config
     // (lib.recursiveUpdate output.config colors.config)
-    // windowRules.config
-    // swayfx.config;
+    // windowRules.config;
 
   # NOTE: raw string configuration not available as options
   extraConfig = lib.concatStringsSep "\n" (
@@ -32,7 +30,6 @@ let
       output.raw
       colors.raw
       windowRules.raw
-      swayfx.raw
     ]
   );
 in
